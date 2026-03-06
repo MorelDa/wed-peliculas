@@ -10,5 +10,17 @@
     "titulo": "El paseo 8",
     "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/oP4BuJ4toBC5KLczNy9c38cMgbr.jpg",
     "url": "https://morelda.github.io/el-paseo/"
+  },
+  {
+    "tipo": "terror",
+    "titulo": "Scary Movie 5",
+    "img": "https://www.themoviedb.org/movie/4258-scary-movie-5?language=es#",
+    "url": "https://morelda.github.io/SCARY/"
+  },
+  {
+    "tipo": "accion",
+    "titulo": "ANACONDA 2025",
+    "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/zX1KJPiGTrzpFcjfOWlmqdRgpQd.jpg",
+    "url": "https://morelda.github.io/anaconda/"
   }
 ]
