@@ -24,9 +24,27 @@
     "url": "https://morelda.github.io/anaconda/"
   },
   {
-    "tipo": "promo",
+    "tipo": "slider",
     "titulo": "",
-    "img": "",
-    "url": " https://archive.org/download/detergente-ace-2017/Detergente%20ACE%20%282017%29.mp4"
+    "img": "https://i.postimg.cc/1zphNXzD/hoh.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/fbxn0ybf/l.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMb/Mesa-de-trabajo-1.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMp/Mesa-de-trabajo-1-GV.png",
+    "url": ""
   }
 ]
