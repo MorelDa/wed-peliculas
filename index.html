@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Movie - XSPLUS</title>
+    <link href='https://fonts.googleapis.com/css2?family=Nunito&display=swap' rel='stylesheet'/>
+    
+    <style>
+        /* ESTILOS ORIGINALES RECONSTRUIDOS */
+        *{margin:0;padding:0;box-sizing:border-box;list-style:none;}
+        body { background: #000; font-family: 'Nunito', sans-serif; color: white; }
+        
+        /* BUSCADOR (ESTILO EXACTO AL QUE ME DISTE) */
+        .xaviec { background: #000; position: fixed; top: 0; width: 100%; z-index: 999; height: 80px; }
+        .form__group { position: relative; padding: 15px 0 0; margin: 0 auto; margin-top: 10px; width: 90%; }
+        
+        .form__field { 
+            font-family: inherit; width: 100%; border: 0; 
+            border-bottom: 2px solid #9b9b9b; outline: 0; 
+            font-size: 1.3rem; color: #fff; padding: 7px 0; 
+            background: transparent; transition: border-color .2s; 
+        }
+        
+        .form__field::placeholder { color: transparent; }
+        .form__field:placeholder-shown ~ .form__label { font-size: 1.3rem; cursor: text; top: 20px; }
+        
+        .form__label { position: absolute; top: 0; display: block; transition: .2s; font-size: 1rem; color: #fff; }
+        
+        .form__field:focus { 
+            padding-bottom: 6px; font-weight: 700; border-width: 3px; 
+            border-image: linear-gradient(to right, red, #008cf7, red); 
+            border-image-slice: 1; 
+        }
+        
+        .form__field:focus ~ .form__label { position: absolute; top: 0; display: block; transition: .2s; font-size: 1rem; color: red; font-weight: 700; }
+
+        /* SLIDER (TU DISEÑO) */
+        .slider { width: 95%; margin: 100px auto 20px auto; overflow: hidden; }
+        .slider ul { display: flex; padding: 0; width: 400%; animation: cambio 20s infinite alternate linear; }
+        .slider li { width: 100%; list-style: none; }
+        .slider img { width: 100%; height: auto; border-radius: 8px; cursor: pointer; }
+
+        @keyframes cambio {
+            0%, 20% {margin-left: 0;}
+            25%, 45% {margin-left: -100%;}
+            50%, 70% {margin-left: -200%;}
+            75%, 100% {margin-left: -300%;}
+        }
+
+        /* GRILLA DE PELÍCULAS */
+        .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; max-width: 1200px; margin: 0 auto; }
+        .card { text-align: center; cursor: pointer; }
+        .card img { width: 98%; aspect-ratio: 2/3; border-radius: 7px; object-fit: cover; border: 1px solid #222; }
+        .card span { display: block; color: #fff; font-size: 12px; margin-top: 5px; text-transform: uppercase; }
+
+        /* REPRODUCTOR (MODAL) */
+        .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
+        .modal-content { display: flex; flex-direction: column; width: 100%; height: 100%; }
+        .close-bar { background: #111; padding: 15px; text-align: right; border-bottom: 1px solid red; }
+        .close-bar span { color: red; font-weight: bold; cursor: pointer; border: 1px solid red; padding: 5px 15px; border-radius: 5px; }
+        iframe { width: 100%; flex-grow: 1; border: none; }
+
+        @media screen and (max-width: 480px) {
+            .cards { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="xaviec">
+        <div class="form__group field">
+            <input autocomplete="off" type="input" class="form__field" placeholder="Buscar" id="myInput" onkeyup="searchFunc()" required />
+            <label for="myInput" class="form__label">Buscar</label>
+        </div>
+    </div>
+
+    <div class="slider">
+        <ul id="slider-content"></ul>
+    </div>
+
+    <center>
+        <ul class="cards" id="movie-content"></ul>
+    </center>
+
+    <div id="videoPlayer" class="player-modal">
+        <div class="modal-content">
+            <div class="close-bar">
+                <span onclick="closePlayer()">CERRAR [X]</span>
+            </div>
+            <iframe id="videoIframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Carga de datos
+        async function loadSite() {
+            try {
+                const res = await fetch('datos.json');
+                const data = await res.json();
+                const sliderUl = document.getElementById('slider-content');
+                const movieUl = document.getElementById('movie-content');
+
+                data.forEach(item => {
+                    if(item.tipo === 'promo') {
+                        sliderUl.innerHTML += `<li><img src="${item.img}" onclick="openPlayer('${item.url}')"></li>`;
+                    } else {
+                        movieUl.innerHTML += `
+                        <li class="card" onclick="openPlayer('${item.url}')" data-title="${item.titulo}">
+                            <img src="${item.img}"/>
+                            <span>${item.titulo}</span>
+                        </li>`;
+                    }
+                });
+            } catch(e) { console.error("Error al cargar JSON"); }
+        }
+
+        function openPlayer(url) {
+            document.getElementById('videoIframe').src = url;
+            document.getElementById('videoPlayer').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePlayer() {
+            document.getElementById('videoPlayer').style.display = 'none';
+            document.getElementById('videoIframe').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function searchFunc() {
+            let input = document.getElementById('myInput').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(card => {
+                let title = card.getAttribute('data-title').toLowerCase();
+                card.style.display = title.includes(input) ? "block" : "none";
+            });
+        }
+
+        window.onload = loadSite;
+    </script>
+</body>
+</html>
