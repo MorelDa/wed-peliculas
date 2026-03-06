@@ -3,139 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista Movie - XSPLUS</title>
-    <link href='https://fonts.googleapis.com/css2?family=Nunito&display=swap' rel='stylesheet'/>
-    
+    <title>PARTY PLAY - Streaming Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS ORIGINALES RECONSTRUIDOS */
-        *{margin:0;padding:0;box-sizing:border-box;list-style:none;}
-        body { background: #000; font-family: 'Nunito', sans-serif; color: white; }
-        
-        /* BUSCADOR (ESTILO EXACTO AL QUE ME DISTE) */
-        .xaviec { background: #000; position: fixed; top: 0; width: 100%; z-index: 999; height: 80px; }
-        .form__group { position: relative; padding: 15px 0 0; margin: 0 auto; margin-top: 10px; width: 90%; }
-        
-        .form__field { 
-            font-family: inherit; width: 100%; border: 0; 
-            border-bottom: 2px solid #9b9b9b; outline: 0; 
-            font-size: 1.3rem; color: #fff; padding: 7px 0; 
-            background: transparent; transition: border-color .2s; 
-        }
-        
-        .form__field::placeholder { color: transparent; }
-        .form__field:placeholder-shown ~ .form__label { font-size: 1.3rem; cursor: text; top: 20px; }
-        
-        .form__label { position: absolute; top: 0; display: block; transition: .2s; font-size: 1rem; color: #fff; }
-        
-        .form__field:focus { 
-            padding-bottom: 6px; font-weight: 700; border-width: 3px; 
-            border-image: linear-gradient(to right, red, #008cf7, red); 
-            border-image-slice: 1; 
-        }
-        
-        .form__field:focus ~ .form__label { position: absolute; top: 0; display: block; transition: .2s; font-size: 1rem; color: red; font-weight: 700; }
+        :root { --primary-color: #e50914; --bg-color: #0a0a0a; --card-bg: #1a1a1a; --text-color: #ffffff; --header-height: 70px; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* SLIDER (TU DISEÑO) */
-        .slider { width: 95%; margin: 100px auto 20px auto; overflow: hidden; }
-        .slider ul { display: flex; padding: 0; width: 400%; animation: cambio 20s infinite alternate linear; }
-        .slider li { width: 100%; list-style: none; }
-        .slider img { width: 100%; height: auto; border-radius: 8px; cursor: pointer; }
+        header { height: var(--header-height); padding: 0 5%; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .site-logo { max-height: 40px; width: auto; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 500; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover { color: var(--primary-color); }
 
-        @keyframes cambio {
-            0%, 20% {margin-left: 0;}
-            25%, 45% {margin-left: -100%;}
-            50%, 70% {margin-left: -200%;}
-            75%, 100% {margin-left: -300%;}
+        .search-container { text-align: center; margin-top: 110px; margin-bottom: 20px; }
+        .search-bar { width: 80%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #333; background: #111; color: white; outline: none; transition: 0.3s; }
+        .search-bar:focus { border-color: var(--primary-color); box-shadow: 0 0 10px rgba(229, 9, 20, 0.4); }
+
+        .ad-banner { width: 90%; max-width: 1000px; margin: 30px auto; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: none; }
+        .ad-banner video { width: 100%; display: block; }
+
+        .container { padding: 0 5% 50px 5%; }
+        h2 { margin-top: 50px; font-size: 1.3rem; border-left: 4px solid var(--primary-color); padding-left: 12px; text-transform: uppercase; letter-spacing: 1px; display: none; }
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }
+        
+        /* --- ESTILO DE TARJETA CON EFECTO DE BRILLO --- */
+        .card { 
+            position: relative; 
+            transition: 0.4s ease; /* Transición más suave */
+            cursor: pointer; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            background: var(--card-bg); 
+            display: none; 
+            border: 2px solid transparent; /* Borde inicial invisible */
         }
 
-        /* GRILLA DE PELÍCULAS */
-        .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; max-width: 1200px; margin: 0 auto; }
-        .card { text-align: center; cursor: pointer; }
-        .card img { width: 98%; aspect-ratio: 2/3; border-radius: 7px; object-fit: cover; border: 1px solid #222; }
-        .card span { display: block; color: #fff; font-size: 12px; margin-top: 5px; text-transform: uppercase; }
+        /* EFECTO HOVER: AGRANDAR Y BRILLAR */
+        .card:hover { 
+            transform: scale(1.08); /* Se agranda un poco más */
+            z-index: 5; 
+            /* Brillo rojo intenso y borde */
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.8); 
+            border-color: var(--primary-color);
+        }
 
-        /* REPRODUCTOR (MODAL) */
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
+        .card span { display: block; padding: 10px; font-size: 0.8rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .party-title { color: #00f2ff; border-left-color: #00f2ff; margin-top: 80px; }
+        /* Brillo especial celeste para Party Play */
+        .party-grid .card:hover { 
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.8); 
+            border-color: #00f2ff; 
+        }
+
+        /* MODAL REPRODUCTOR */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .modal-content { display: flex; flex-direction: column; width: 100%; height: 100%; }
-        .close-bar { background: #111; padding: 15px; text-align: right; border-bottom: 1px solid red; }
-        .close-bar span { color: red; font-weight: bold; cursor: pointer; border: 1px solid red; padding: 5px 15px; border-radius: 5px; }
-        iframe { width: 100%; flex-grow: 1; border: none; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 10001; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        @media screen and (max-width: 480px) {
-            .cards { grid-template-columns: repeat(3, 1fr); }
-        }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
+        @media (max-width: 600px) { nav { display: none; } .movie-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; } }
     </style>
 </head>
 <body>
 
-    <div class="xaviec">
-        <div class="form__group field">
-            <input autocomplete="off" type="input" class="form__field" placeholder="Buscar" id="myInput" onkeyup="searchFunc()" required />
-            <label for="myInput" class="form__label">Buscar</label>
-        </div>
-    </div>
+<header>
+    <img src="https://i.postimg.cc/X7bmMQHY/logo.png" alt="Logo" class="site-logo">
+    <nav>
+        <a href="#accion">Acción</a>
+        <a href="#terror">Terror</a>
+        <a href="#drama">Drama</a>
+        <a href="#comedia">Comedia</a>
+        <a href="#party-play" style="color:#00f2ff;">Party Play</a>
+    </nav>
+</header>
 
-    <div class="slider">
-        <ul id="slider-content"></ul>
-    </div>
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar películas o música..." onkeyup="filterCards()">
+</div>
 
-    <center>
-        <ul class="cards" id="movie-content"></ul>
-    </center>
+<div class="container">
+    <div id="ad-top" class="ad-banner"></div>
 
-    <div id="videoPlayer" class="player-modal">
-        <div class="modal-content">
-            <div class="close-bar">
-                <span onclick="closePlayer()">CERRAR [X]</span>
-            </div>
-            <iframe id="videoIframe" src="" allowfullscreen></iframe>
-        </div>
-    </div>
+    <h2 id="accion-h2">Películas de Acción</h2>
+    <div class="movie-grid" id="accion-grid"></div>
 
-    <script>
-        // Carga de datos
-        async function loadSite() {
-            try {
-                const res = await fetch('datos.json');
-                const data = await res.json();
-                const sliderUl = document.getElementById('slider-content');
-                const movieUl = document.getElementById('movie-content');
+    <h2 id="terror-h2">Terror</h2>
+    <div class="movie-grid" id="terror-grid"></div>
 
-                data.forEach(item => {
-                    if(item.tipo === 'promo') {
-                        sliderUl.innerHTML += `<li><img src="${item.img}" onclick="openPlayer('${item.url}')"></li>`;
-                    } else {
-                        movieUl.innerHTML += `
-                        <li class="card" onclick="openPlayer('${item.url}')" data-title="${item.titulo}">
-                            <img src="${item.img}"/>
-                            <span>${item.titulo}</span>
-                        </li>`;
+    <div id="ad-mid" class="ad-banner"></div>
+
+    <h2 id="drama-h2">Drama</h2>
+    <div class="movie-grid" id="drama-grid"></div>
+
+    <h2 id="comedia-h2">Comedia</h2>
+    <div class="movie-grid" id="comedia-grid"></div>
+
+    <h2 id="party-play-h2" class="party-title">🎵 Party Play (Videos & Música MP4)</h2>
+    <div class="movie-grid party-grid" id="party-play-grid"></div>
+</div>
+
+<div id="videoPlayer" class="player-modal">
+    <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
+    <iframe id="videoIframe" allowfullscreen></iframe>
+</div>
+
+<footer><p>&copy; 2026 DJKEVIN PRODUCCIONES</p></footer>
+
+<script>
+    async function loadContent() {
+        try {
+            const res = await fetch('datos.json');
+            const data = await res.json();
+            
+            data.forEach(item => {
+                const cardHTML = `
+                    <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}')" style="display:block">
+                        <img src="${item.img}">
+                        <span>${item.titulo}</span>
+                    </div>`;
+                
+                if(item.tipo === 'promo') {
+                    const adZone = document.getElementById('ad-top');
+                    adZone.style.display = 'block';
+                    adZone.innerHTML = `<video autoplay muted loop playsinline><source src="${item.url}" type="video/mp4"></video>`;
+                } else {
+                    const grid = document.getElementById(item.tipo + '-grid');
+                    const title = document.getElementById(item.tipo + '-h2');
+                    if(grid) {
+                        grid.innerHTML += cardHTML;
+                        title.style.display = 'block';
                     }
-                });
-            } catch(e) { console.error("Error al cargar JSON"); }
-        }
-
-        function openPlayer(url) {
-            document.getElementById('videoIframe').src = url;
-            document.getElementById('videoPlayer').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePlayer() {
-            document.getElementById('videoPlayer').style.display = 'none';
-            document.getElementById('videoIframe').src = '';
-            document.body.style.overflow = 'auto';
-        }
-
-        function searchFunc() {
-            let input = document.getElementById('myInput').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(card => {
-                let title = card.getAttribute('data-title').toLowerCase();
-                card.style.display = title.includes(input) ? "block" : "none";
+                }
             });
-        }
+        } catch (e) { console.error("Error cargando JSON"); }
+    }
 
-        window.onload = loadSite;
-    </script>
+    function openPlayer(url) {
+        document.getElementById('videoIframe').src = url;
+        document.getElementById('videoPlayer').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePlayer() {
+        document.getElementById('videoPlayer').style.display = 'none';
+        document.getElementById('videoIframe').src = '';
+        document.body.style.overflow = 'auto';
+    }
+
+    function filterCards() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            let title = card.getAttribute('data-title').toLowerCase();
+            card.style.display = title.includes(input) ? "block" : "none";
+        });
+    }
+
+    window.onload = loadContent;
+</script>
 </body>
 </html>
