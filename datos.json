@@ -14,7 +14,7 @@
   {
     "tipo": "terror",
     "titulo": "Scary Movie 5",
-    "img": "https://es.web.img3.acsta.net/c_310_420/medias/nmedia/18/95/50/70/20531413.jpg",
+    "img": "https://www.themoviedb.org/movie/4258-scary-movie-5?language=es#",
     "url": "https://morelda.github.io/SCARY/"
   },
   {
@@ -22,5 +22,11 @@
     "titulo": "ANACONDA 2025",
     "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/zX1KJPiGTrzpFcjfOWlmqdRgpQd.jpg",
     "url": "https://morelda.github.io/anaconda/"
+  },
+  {
+    "tipo": "promo",
+    "titulo": "PUBLICIDAS",
+    "img": "https://ia601006.us.archive.org/21/items/detergente-ace-2017/detergente-ace-2017.thumbs%2FDetergente%20ACE%20%282017%29_000005.jpg",
+    "url": " https://archive.org/download/detergente-ace-2017/Detergente%20ACE%20%282017%29.mp4"
   }
 ]
