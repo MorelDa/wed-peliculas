@@ -7,101 +7,111 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #e50914; --bg-color: #0a0a0a; --card-bg: #1a1a1a; --text-color: #ffffff; --header-height: 70px; }
+        
+        /* Scroll suave para que el menú funcione bonito */
         html { scroll-behavior: smooth; }
+
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
         header { height: var(--header-height); padding: 0 5%; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .site-logo { max-height: 40px; width: auto; }
-        nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 500; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
         nav a:hover { color: var(--primary-color); }
 
-        .search-container { text-align: center; margin-top: 110px; margin-bottom: 20px; }
-        .search-bar { width: 80%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #333; background: #111; color: white; outline: none; transition: 0.3s; }
-        .search-bar:focus { border-color: var(--primary-color); box-shadow: 0 0 10px rgba(229, 9, 20, 0.4); }
+        /* --- CARRUSEL DE IMÁGENES (TOP) --- */
+        .main-slider { width: 100%; height: 450px; margin-top: var(--header-height); overflow: hidden; position: relative; background: #000; }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: 0.8s cubic-bezier(0.45, 0, 0.55, 1); }
+        .slide { min-width: 100%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        .ad-banner { width: 90%; max-width: 1000px; margin: 30px auto; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: none; }
+        .search-container { text-align: center; margin: 40px 0; }
+        .search-bar { width: 80%; max-width: 500px; padding: 14px 25px; border-radius: 30px; border: 1px solid #333; background: #111; color: white; outline: none; transition: 0.3s; font-family: inherit; }
+        .search-bar:focus { border-color: var(--primary-color); box-shadow: 0 0 15px rgba(229, 9, 20, 0.4); }
+
+        .ad-banner { width: 90%; max-width: 1100px; margin: 40px auto; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; }
         .ad-banner video { width: 100%; display: block; }
 
-        .container { padding: 0 5% 50px 5%; }
-        h2 { margin-top: 50px; font-size: 1.3rem; border-left: 4px solid var(--primary-color); padding-left: 12px; text-transform: uppercase; letter-spacing: 1px; display: none; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }
+        .container { padding: 0 5% 100px 5%; }
         
-        /* --- ESTILO DE TARJETA CON EFECTO DE BRILLO --- */
-        .card { 
-            position: relative; 
-            transition: 0.4s ease; /* Transición más suave */
-            cursor: pointer; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            background: var(--card-bg); 
-            display: none; 
-            border: 2px solid transparent; /* Borde inicial invisible */
-        }
+        /* Ajuste para que al saltar desde el menú no tape el título */
+        .category-section { scroll-margin-top: 100px; }
 
-        /* EFECTO HOVER: AGRANDAR Y BRILLAR */
-        .card:hover { 
-            transform: scale(1.08); /* Se agranda un poco más */
-            z-index: 5; 
-            /* Brillo rojo intenso y borde */
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.8); 
-            border-color: var(--primary-color);
-        }
-
+        h2 { margin-top: 60px; font-size: 1.5rem; border-left: 5px solid var(--primary-color); padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; display: none; }
+        
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 25px; margin-top: 25px; }
+        
+        .card { position: relative; transition: 0.4s ease; cursor: pointer; border-radius: 10px; overflow: hidden; background: var(--card-bg); display: none; border: 2px solid transparent; }
+        .card:hover { transform: scale(1.08); z-index: 5; box-shadow: 0 0 25px rgba(229, 9, 20, 0.7); border-color: var(--primary-color); }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
-        .card span { display: block; padding: 10px; font-size: 0.8rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card span { display: block; padding: 12px; font-size: 0.85rem; text-align: center; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .party-title { color: #00f2ff; border-left-color: #00f2ff; margin-top: 80px; }
-        /* Brillo especial celeste para Party Play */
-        .party-grid .card:hover { 
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.8); 
-            border-color: #00f2ff; 
-        }
+        .party-title { color: #00f2ff; border-left-color: #00f2ff; }
+        .party-grid .card:hover { box-shadow: 0 0 25px rgba(0, 242, 255, 0.7); border-color: #00f2ff; }
 
         /* MODAL REPRODUCTOR */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 10001; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary-color); color: white; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 10001; text-transform: uppercase; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
-        @media (max-width: 600px) { nav { display: none; } .movie-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; } }
+        footer { text-align: center; padding: 60px; color: #666; font-size: 0.9rem; border-top: 1px solid #111; }
+        
+        @media (max-width: 600px) { 
+            .main-slider { height: 250px; } 
+            nav { display: none; } 
+            .movie-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+            h2 { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://i.postimg.cc/X7bmMQHY/logo.png" alt="Logo" class="site-logo">
+    <img src="https://i.postimg.cc/X7bmMQHY/logo.png" alt="Logo" class="site-logo" onclick="window.scrollTo(0,0)" style="cursor:pointer">
     <nav>
-        <a href="#accion">Acción</a>
-        <a href="#terror">Terror</a>
-        <a href="#drama">Drama</a>
-        <a href="#comedia">Comedia</a>
-        <a href="#party-play" style="color:#00f2ff;">Party Play</a>
+        <a href="#accion-sec">Acción</a>
+        <a href="#terror-sec">Terror</a>
+        <a href="#drama-sec">Drama</a>
+        <a href="#comedia-sec">Comedia</a>
+        <a href="#party-sec" style="color:#00f2ff;">Party Play</a>
     </nav>
 </header>
 
+<div class="main-slider">
+    <div class="slider-track" id="sliderTrack"></div>
+</div>
+
 <div class="search-container">
-    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar películas o música..." onkeyup="filterCards()">
+    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar películas o música de DJ KEVIN..." onkeyup="filterCards()">
 </div>
 
 <div class="container">
     <div id="ad-top" class="ad-banner"></div>
 
-    <h2 id="accion-h2">Películas de Acción</h2>
-    <div class="movie-grid" id="accion-grid"></div>
+    <div id="accion-sec" class="category-section">
+        <h2 id="accion-h2">Películas de Acción</h2>
+        <div class="movie-grid" id="accion-grid"></div>
+    </div>
 
-    <h2 id="terror-h2">Terror</h2>
-    <div class="movie-grid" id="terror-grid"></div>
+    <div id="terror-sec" class="category-section">
+        <h2 id="terror-h2">Terror</h2>
+        <div class="movie-grid" id="terror-grid"></div>
+    </div>
 
-    <div id="ad-mid" class="ad-banner"></div>
+    <div id="drama-sec" class="category-section">
+        <h2 id="drama-h2">Drama</h2>
+        <div class="movie-grid" id="drama-grid"></div>
+    </div>
 
-    <h2 id="drama-h2">Drama</h2>
-    <div class="movie-grid" id="drama-grid"></div>
+    <div id="comedia-sec" class="category-section">
+        <h2 id="comedia-h2">Comedia</h2>
+        <div class="movie-grid" id="comedia-grid"></div>
+    </div>
 
-    <h2 id="comedia-h2">Comedia</h2>
-    <div class="movie-grid" id="comedia-grid"></div>
-
-    <h2 id="party-play-h2" class="party-title">🎵 Party Play (Videos & Música MP4)</h2>
-    <div class="movie-grid party-grid" id="party-play-grid"></div>
+    <div id="party-sec" class="category-section">
+        <h2 id="party-play-h2" class="party-title">🎵 Party Play (Videos & Música MP4)</h2>
+        <div class="movie-grid party-grid" id="party-play-grid"></div>
+    </div>
 </div>
 
 <div id="videoPlayer" class="player-modal">
@@ -109,35 +119,50 @@
     <iframe id="videoIframe" allowfullscreen></iframe>
 </div>
 
-<footer><p>&copy; 2026 DJKEVIN PRODUCCIONES</p></footer>
+<footer><p>&copy; 2026 DJKEVIN PRODUCCIONES - Calidad Premium</p></footer>
 
 <script>
     async function loadContent() {
         try {
             const res = await fetch('datos.json');
             const data = await res.json();
+            const sliderTrack = document.getElementById('sliderTrack');
             
             data.forEach(item => {
-                const cardHTML = `
-                    <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}')" style="display:block">
-                        <img src="${item.img}">
-                        <span>${item.titulo}</span>
-                    </div>`;
-                
-                if(item.tipo === 'promo') {
+                if(item.tipo === 'slider') {
+                    sliderTrack.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
+                } 
+                else if(item.tipo === 'promo') {
                     const adZone = document.getElementById('ad-top');
                     adZone.style.display = 'block';
                     adZone.innerHTML = `<video autoplay muted loop playsinline><source src="${item.url}" type="video/mp4"></video>`;
-                } else {
+                } 
+                else {
                     const grid = document.getElementById(item.tipo + '-grid');
                     const title = document.getElementById(item.tipo + '-h2');
                     if(grid) {
-                        grid.innerHTML += cardHTML;
+                        grid.innerHTML += `
+                            <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}')" style="display:block">
+                                <img src="${item.img}">
+                                <span>${item.titulo}</span>
+                            </div>`;
                         title.style.display = 'block';
                     }
                 }
             });
+            startSlider();
         } catch (e) { console.error("Error cargando JSON"); }
+    }
+
+    function startSlider() {
+        const track = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slide');
+        if(slides.length <= 1) return;
+        let index = 0;
+        setInterval(() => {
+            index = (index + 1) % slides.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }, 5000);
     }
 
     function openPlayer(url) {
