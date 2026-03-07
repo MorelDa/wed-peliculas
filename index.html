@@ -19,26 +19,27 @@
 
         /* HEADER - LOGO IZQUIERDA */
         header { 
-            height: 65px; background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; 
-            display: flex; align-items: center; padding: 0 30px; border-bottom: 1px solid rgba(255,255,255,0.1); 
+            height: 70px; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; 
+            display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
-        .site-logo { max-height: 40px; cursor: pointer; }
+        .site-logo { max-height: 45px; cursor: pointer; }
 
-        /* NAV */
-        .nav-container { margin-top: 85px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-        .category-nav a { background: #111; color: #fff; padding: 7px 15px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; border: 1px solid #333; text-transform: uppercase; }
-        .search-bar { width: 90%; max-width: 450px; padding: 10px 20px; border-radius: 25px; border: 1px solid #444; background: #000; color: #fff; outline: none; }
+        /* NAV CON ROMANCE */
+        .nav-container { margin-top: 90px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; width: 95%; }
+        .category-nav a { background: #111; color: #fff; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: bold; border: 1px solid #333; text-transform: uppercase; transition: 0.3s; }
+        .category-nav a:hover { border-color: var(--primary); color: var(--primary); }
+        .search-bar { width: 85%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #444; background: #000; color: white; outline: none; }
 
         /* SLIDER TOP */
-        .main-slider { width: 96%; max-width: 1200px; height: 380px; margin: 20px auto; overflow: hidden; border-radius: 15px; position: relative; }
+        .main-slider { width: 95%; max-width: 1200px; height: 400px; margin: 25px auto; overflow: hidden; border-radius: 20px; position: relative; }
         .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
         .slide { min-width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
 
         /* FILAS DE PELÍCULAS - SCROLL SUAVE */
-        .category-section { margin-bottom: 30px; }
-        h2 { font-family: 'Orbitron'; font-size: 1rem; margin-left: 4%; border-left: 4px solid var(--primary); padding-left: 10px; margin-bottom: 10px; }
+        .category-section { margin-bottom: 40px; }
+        h2 { font-family: 'Orbitron'; font-size: 1.1rem; margin-left: 4%; border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
 
         .carousel-wrapper { 
             width: 100%; overflow-x: auto; display: flex; 
@@ -47,23 +48,24 @@
         }
         .carousel-wrapper::-webkit-scrollbar { display: none; }
         
-        .movie-grid { display: flex; gap: 15px; padding: 10px 4%; }
+        .movie-grid { display: flex; gap: 18px; padding: 10px 4%; }
 
         .card { 
-            width: 180px; background: var(--card-bg); border-radius: 10px; 
+            width: 200px; background: var(--card-bg); border-radius: 12px; 
             flex-shrink: 0; border: 1px solid #222; overflow: hidden;
-            transition: transform 0.3s;
+            transition: 0.3s;
         }
-        .card:hover { transform: scale(1.05); border-color: var(--cyber); }
+        .card:hover { transform: scale(1.05); border-color: var(--cyber); z-index: 10; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; pointer-events: none; }
-        .card span { display: block; padding: 8px; font-size: 0.75rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card span { display: block; padding: 10px; font-size: 0.85rem; text-align: center; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* MODAL */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary); color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; z-index: 10001; }
+        .player-header { position: absolute; top: 0; width: 100%; padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 11; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
+        .close-btn { background: var(--primary); color: white; padding: 8px 18px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; font-weight: bold; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        @media (max-width: 600px) { .card { width: 140px; } .main-slider { height: 220px; } }
+        @media (max-width: 600px) { .card { width: 150px; } .main-slider { height: 230px; } }
     </style>
 </head>
 <body>
@@ -81,22 +83,31 @@
 
 <div class="nav-container">
     <div class="category-nav">
-        <a href="#accion-sec">Acción</a><a href="#terror-sec">Terror</a><a href="#biopic-sec">Biopic</a>
-        <a href="#drama-sec">Drama</a><a href="#comedia-sec">Comedia</a><a href="#series-sec">Series</a>
+        <a href="#accion-sec">Acción</a>
+        <a href="#terror-sec">Terror</a>
+        <a href="#romance-sec" style="border-color: #ff69b4; color: #ff69b4;">Romance</a>
+        <a href="#comedia-sec">Comedia</a>
+        <a href="#series-sec">Series</a>
+        <a href="#party-sec" style="color:var(--cyber); border-color:var(--cyber);">Party Play</a>
     </div>
-    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterCards()">
+    <input type="text" id="searchInput" class="search-bar" placeholder="¿Qué quieres ver hoy?" onkeyup="filterCards()">
 </div>
 
 <div class="main-slider"><div class="slider-track" id="sliderTrack"></div></div>
+
 <div id="content-container"></div>
 
 <div id="videoPlayer" class="player-modal">
-    <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
+    <div class="player-header">
+        <div id="playerTitle" style="font-size:12px; font-family:'Orbitron'"></div>
+        <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
+    </div>
     <iframe id="videoIframe" allowfullscreen></iframe>
 </div>
 
 <script>
-    const categorias = ["accion", "terror", "biopic", "drama", "comedia", "series", "party-play"];
+    // Añadida categoría 'romance' a la lista
+    const categorias = ["accion", "terror", "romance", "biopic", "drama", "comedia", "series", "party-play"];
     let userInteracting = false;
     let interactionTimer;
 
@@ -123,7 +134,11 @@
                     const grid = document.getElementById(`${t}-grid`);
                     if(grid) {
                         document.getElementById(`${t}-sec`).style.display = 'block';
-                        grid.innerHTML += `<div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}', '${item.titulo}')"><img src="${item.img}"><span>${item.titulo}</span></div>`;
+                        grid.innerHTML += `
+                            <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}', '${item.titulo}')">
+                                <img src="${item.img}">
+                                <span>${item.titulo}</span>
+                            </div>`;
                     }
                 });
             });
@@ -131,7 +146,7 @@
             startAutoScroll();
             startSlider();
             runLoader();
-        } catch (e) { console.log(e); }
+        } catch (e) { console.log("Error cargando datos:", e); }
     }
 
     function runLoader() {
@@ -144,10 +159,8 @@
 
     function startAutoScroll() {
         const wrappers = document.querySelectorAll('.carousel-wrapper');
-        
         wrappers.forEach(wrapper => {
-            let scrollAmount = 0;
-            let step = 0.6; // VELOCIDAD SUAVE (Bájalo más si quieres más lento, ej: 0.4)
+            let step = 0.5; // VELOCIDAD SEDOSA Y SUAVE
 
             function stepScroll() {
                 if (!userInteracting) {
@@ -159,20 +172,11 @@
                 requestAnimationFrame(stepScroll);
             }
 
-            // Eventos para detectar si el usuario toca la pantalla
-            const stopAuto = () => {
-                userInteracting = true;
-                clearTimeout(interactionTimer);
-            };
+            const stopAuto = () => { userInteracting = true; clearTimeout(interactionTimer); };
+            const resumeAuto = () => { interactionTimer = setTimeout(() => { userInteracting = false; }, 2500); };
 
-            const resumeAuto = () => {
-                interactionTimer = setTimeout(() => {
-                    userInteracting = false;
-                }, 2500); // Espera 2.5 segundos antes de volver a moverse solo
-            };
-
-            wrapper.addEventListener('touchstart', stopAuto);
-            wrapper.addEventListener('touchend', resumeAuto);
+            wrapper.addEventListener('touchstart', stopAuto, {passive: true});
+            wrapper.addEventListener('touchend', resumeAuto, {passive: true});
             wrapper.addEventListener('mousedown', stopAuto);
             wrapper.addEventListener('mouseup', resumeAuto);
             wrapper.addEventListener('mouseleave', resumeAuto);
@@ -195,12 +199,15 @@
 
     function openPlayer(url, title) {
         document.getElementById('videoIframe').src = url;
+        document.getElementById('playerTitle').innerText = title;
         document.getElementById('videoPlayer').style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 
     function closePlayer() {
         document.getElementById('videoPlayer').style.display = 'none';
         document.getElementById('videoIframe').src = '';
+        document.body.style.overflow = 'auto';
     }
 
     function filterCards() {
