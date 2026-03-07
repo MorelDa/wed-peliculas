@@ -8,14 +8,13 @@
     <style>
         :root { --primary: #e50914; --cyber: #00f2ff; --bg: #050505; --card-bg: #121212; }
         body { background: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        header { height: 70px; background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; align-items: center; padding: 0 4%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        header { height: 70px; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; align-items: center; padding: 0 4%; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .site-logo { max-height: 45px; cursor: pointer; }
         .nav-container { margin-top: 90px; display: flex; flex-direction: column; align-items: center; }
         .category-nav { display: flex; gap: 10px; width: 95%; overflow-x: auto; padding: 15px 0; scrollbar-width: none; }
-        .category-nav a { background: #111; color: #fff; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; border: 1px solid #333; white-space: nowrap; transition: 0.3s; }
-        .category-nav a:hover { border-color: var(--cyber); color: var(--cyber); }
-        .main-slider { width: 95%; height: 400px; margin: 20px auto; border-radius: 20px; overflow: hidden; position: relative; background: #000; }
-        .slider-track { display: flex; height: 100%; transition: 0.8s ease-in-out; }
+        .category-nav a { background: #111; color: #fff; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; border: 1px solid #333; white-space: nowrap; }
+        .main-slider { width: 95%; height: 400px; margin: 20px auto; border-radius: 20px; overflow: hidden; position: relative; }
+        .slider-track { display: flex; height: 100%; transition: 0.8s; }
         .slide { min-width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         .category-section { margin-bottom: 40px; }
@@ -23,145 +22,91 @@
         .carousel-wrapper { width: 100%; overflow-x: auto; display: flex; scrollbar-width: none; cursor: grab; }
         .movie-grid { display: flex; gap: 15px; padding: 10px 4%; }
         .card { width: 180px; background: var(--card-bg); border-radius: 10px; flex-shrink: 0; border: 1px solid #222; overflow: hidden; transition: 0.3s; position: relative; cursor: pointer; }
-        .card:hover { transform: scale(1.05); border-color: var(--cyber); z-index: 10; }
+        .card:hover { transform: scale(1.05); border-color: var(--cyber); }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; pointer-events: none; }
         .card .info { padding: 10px; text-align: center; font-size: 0.75rem; }
-        .ep-tag { position: absolute; top: 10px; right: 10px; background: var(--primary); font-size: 9px; padding: 3px 6px; border-radius: 3px; font-weight: bold; z-index: 2; }
+        .ep-tag { position: absolute; top: 10px; right: 10px; background: var(--primary); font-size: 9px; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary); color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; z-index: 10001; font-family: 'Orbitron'; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary); color: white; padding: 10px; border-radius: 5px; cursor: pointer; z-index: 10001; font-family: 'Orbitron'; }
         iframe { width: 100%; height: 100%; border: none; }
         @media (max-width: 600px) { .card { width: 140px; } .main-slider { height: 220px; } }
     </style>
 </head>
 <body>
-
 <header><img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="site-logo" onclick="location.reload()"></header>
-
-<div class="nav-container">
-    <div class="category-nav" id="cat-nav"></div>
-</div>
-
-<div class="main-slider">
-    <div class="slider-track" id="sliderTrack"></div>
-</div>
-
+<div class="nav-container"><div class="category-nav" id="cat-nav"></div></div>
+<div class="main-slider"><div class="slider-track" id="sliderTrack"></div></div>
 <div id="content-container"></div>
-
 <div id="videoPlayer" class="player-modal">
     <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
     <iframe id="videoIframe" allowfullscreen></iframe>
 </div>
-
 <script>
-    // Lista de categorías que el sistema buscará
-    const categoriasVisibles = ["Acción", "Aventura", "Comedia", "Drama", "Terror", "Horror", "Ciencia ficción", "Fantasía", "Romance", "Suspenso", "Thriller", "Misterio", "Animación", "Anime", "Musical", "Guerra", "Deporte", "Documental", "Superhéroes", "Cyberpunk", "Party Play"];
-    
+    const categorias = ["Acción", "Aventura", "Comedia", "Drama", "Terror", "Horror", "Ciencia ficción", "Fantasía", "Romance", "Suspenso", "Thriller", "Misterio", "Animación", "Anime", "Musical", "Guerra", "Deporte", "Documental", "Superhéroes", "Cyberpunk", "Party Play"];
     let userTouching = false;
 
     async function init() {
-        try {
-            const res = await fetch('datos.json');
-            const data = await res.json();
-            
-            const nav = document.getElementById('cat-nav');
-            const container = document.getElementById('content-container');
-            const track = document.getElementById('sliderTrack');
-
-            // 1. Crear las secciones en el HTML
-            categoriasVisibles.forEach(c => {
-                const id = c.toLowerCase().replace(/\s+/g, '-');
-                nav.innerHTML += `<a href="#sec-${id}">${c}</a>`;
-                
-                const sec = document.createElement('div');
-                sec.className = 'category-section';
-                sec.id = `sec-${id}`;
-                sec.style.display = 'none'; // Ocultar si está vacía
-                sec.innerHTML = `<h2>${c}</h2><div class="carousel-wrapper"><div class="movie-grid" id="grid-${id}"></div></div>`;
-                container.appendChild(sec);
-            });
-
-            // 2. Repartir el contenido del JSON
-            data.forEach(item => {
-                // Convertir 'tipo' o 'tipos' en un solo array estándar
-                const misTipos = (item.tipos || [item.tipo] || []).map(t => t ? t.toLowerCase().trim() : "");
-
-                // Cargar Slider
-                if (misTipos.includes('slider')) {
-                    track.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
-                }
-
-                // Cargar en Grillas
-                misTipos.forEach(t => {
-                    const cleanT = t.replace(/\s+/g, '-');
-                    const grid = document.getElementById(`grid-${cleanT}`);
-                    if (grid) {
-                        document.getElementById(`sec-${cleanT}`).style.display = 'block';
-                        
-                        // Formatear etiqueta de episodio/temporada
-                        let epLabel = "";
-                        if (item.temporada || item.episodio) {
-                            epLabel = `<div class="ep-tag">T${item.temporada || 1} ${item.episodio ? 'E'+item.episodio : ''}</div>`;
-                        }
-
-                        grid.innerHTML += `
-                            <div class="card" onclick="openPlayer('${item.url}')">
-                                ${epLabel}
-                                <img src="${item.img}">
-                                <div class="info"><b>${item.titulo}</b></div>
-                            </div>`;
-                    }
-                });
-            });
-
-            startAutoScroll();
-            startSlider();
-        } catch (e) {
-            console.error("Error cargando JSON:", e);
-        }
-    }
-
-    function startSlider() {
+        const res = await fetch('datos.json');
+        const data = await res.json();
+        const nav = document.getElementById('cat-nav');
+        const container = document.getElementById('content-container');
         const track = document.getElementById('sliderTrack');
-        let index = 0;
-        setInterval(() => {
-            const slides = track.querySelectorAll('.slide');
-            if (slides.length > 0) {
-                index = (index + 1) % slides.length;
-                track.style.transform = `translateX(-${index * 100}%)`;
-            }
-        }, 5000);
-    }
 
-    function startAutoScroll() {
-        document.querySelectorAll('.carousel-wrapper').forEach(w => {
-            let scrollAmount = 0;
-            const step = 1;
-            function auto() {
-                if (!userTouching) {
-                    w.scrollLeft += step;
-                    if (w.scrollLeft >= w.scrollWidth - w.clientWidth) w.scrollLeft = 0;
-                }
-                requestAnimationFrame(auto);
-            }
-            w.addEventListener('touchstart', () => userTouching = true);
-            w.addEventListener('touchend', () => setTimeout(() => userTouching = false, 2000));
-            w.addEventListener('mousedown', () => userTouching = true);
-            w.addEventListener('mouseup', () => setTimeout(() => userTouching = false, 2000));
-            auto();
+        categorias.forEach(c => {
+            const id = c.toLowerCase().replace(/\s+/g, '-');
+            nav.innerHTML += `<a href="#sec-${id}">${c}</a>`;
+            const sec = document.createElement('div');
+            sec.className = 'category-section';
+            sec.id = `sec-${id}`;
+            sec.style.display = 'none';
+            sec.innerHTML = `<h2>${c}</h2><div class="carousel-wrapper"><div class="movie-grid" id="grid-${id}"></div></div>`;
+            container.appendChild(sec);
         });
+
+        data.forEach(item => {
+            const misTipos = (item.tipos || [item.tipo] || []).map(t => t ? t.toLowerCase().trim() : "");
+            if (misTipos.includes('slider')) track.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
+            
+            misTipos.forEach(t => {
+                const id = t.replace(/\s+/g, '-');
+                const grid = document.getElementById(`grid-${id}`);
+                if (grid) {
+                    document.getElementById(`sec-${id}`).style.display = 'block';
+                    const ep = item.temporada ? `<div class="ep-tag">T${item.temporada} E${item.episodio || 1}</div>` : "";
+                    grid.innerHTML += `<div class="card" onclick="openPlayer('${item.url}')">${ep}<img src="${item.img}"><div class="info"><b>${item.titulo}</b></div></div>`;
+                }
+            });
+        });
+        startAutoScroll(); startSlider();
     }
 
     function openPlayer(url) {
-        if(!url) return;
-        document.getElementById('videoIframe').src = url;
+        const player = document.getElementById('videoIframe');
+        // BLOQUEADOR DE PUBLICIDAD ACTIVO
+        player.setAttribute("sandbox", "allow-forms allow-scripts allow-same-origin");
+        player.src = url;
         document.getElementById('videoPlayer').style.display = 'block';
     }
 
     function closePlayer() {
         document.getElementById('videoPlayer').style.display = 'none';
+        document.getElementById('videoIframe').removeAttribute("sandbox");
         document.getElementById('videoIframe').src = '';
     }
 
+    function startSlider() {
+        let i = 0; setInterval(() => {
+            const s = document.querySelectorAll('.slide');
+            if(s.length) { i = (i+1)%s.length; document.getElementById('sliderTrack').style.transform = `translateX(-${i*100}%)`; }
+        }, 5000);
+    }
+
+    function startAutoScroll() {
+        document.querySelectorAll('.carousel-wrapper').forEach(w => {
+            setInterval(() => { if(!userTouching) { w.scrollLeft += 1; if(w.scrollLeft >= w.scrollWidth - w.clientWidth) w.scrollLeft = 0; } }, 30);
+            w.onmousedown = () => userTouching = true; w.onmouseup = () => userTouching = false;
+        });
+    }
     init();
 </script>
 </body>
