@@ -22,59 +22,63 @@
             background-size: 30px 30px; animation: bgMove 20s linear infinite;
         }
         @keyframes bgMove { from { background-position: 0 0; } to { background-position: 30px 30px; } }
-        
         .loader-content { position: relative; z-index: 2; width: 320px; text-align: center; }
         .logo-box { position: relative; display: inline-block; margin-bottom: 25px; }
         .loader-logo { max-height: 90px; filter: drop-shadow(0 0 10px var(--cyber)); }
         .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--cyber); box-shadow: 0 0 10px var(--cyber); animation: scan 2s infinite ease-in-out; }
         @keyframes scan { 0%, 100% { top: 0%; } 50% { top: 100%; } }
-
         .loader-text h1 { font-family: 'Orbitron'; font-size: 1rem; letter-spacing: 3px; color: var(--cyber); margin: 10px 0; }
         .welcome-msg { font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px; }
         .signature { font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
         .signature span { color: var(--primary); }
-
         .progress-box { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 20px 0; overflow: hidden; }
         .progress-bar { width: 0%; height: 100%; background: var(--cyber); box-shadow: 0 0 15px var(--cyber); }
         .percent-text { font-family: 'Orbitron'; font-size: 12px; color: var(--cyber); }
-
         .loader-hidden { opacity: 0 !important; visibility: hidden !important; transition: 1s ease-in-out; }
 
-        /* HEADER Y NAV */
+        /* HEADER */
         header { height: 70px; background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .site-logo { max-height: 50px; cursor: pointer; }
 
+        /* NAV Y SEARCH */
         .nav-container { margin-top: 90px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; width: 95%; }
-        .category-nav a { background: #111; color: #fff; padding: 7px 15px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; font-weight: bold; border: 1px solid #333; text-transform: uppercase; transition: 0.3s; }
+        .category-nav a { background: #111; color: #fff; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: bold; border: 1px solid #333; text-transform: uppercase; transition: 0.3s; }
         .category-nav a:hover { border-color: var(--primary); color: var(--primary); }
+        .search-bar { width: 85%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #333; background: #000; color: white; outline: none; }
 
-        .search-bar { width: 85%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #333; background: #000; color: white; outline: none; transition: 0.3s; }
-        .search-bar:focus { border-color: var(--cyber); box-shadow: 0 0 10px rgba(0,242,255,0.2); }
+        /* CARRUSEL REPARADO */
+        .main-slider { width: 95%; max-width: 1200px; height: 450px; margin: 25px auto; overflow: hidden; border-radius: 20px; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        .slide { min-width: 100%; width: 100%; height: 100%; flex-shrink: 0; pointer-events: none; /* Evita interferencia al tocar */ }
+        .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* SLIDER */
-        .main-slider { width: 95%; max-width: 1200px; height: 450px; margin: 20px auto; overflow: hidden; border-radius: 15px; position: relative; }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .slide { min-width: 100%; height: 100%; flex-shrink: 0; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* GRIDS */
+        /* PORTADAS MÁS GRANDES */
         .container { padding: 0 5% 100px 5%; }
-        .category-section { scroll-margin-top: 100px; display: none; margin-bottom: 40px; }
-        h2 { font-family: 'Orbitron'; font-size: 1.2rem; border-left: 4px solid var(--primary); padding-left: 12px; margin-bottom: 20px; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; transition: 0.3s; cursor: pointer; border: 1px solid #222; }
-        .card:hover { transform: translateY(-5px); border-color: var(--cyber); box-shadow: 0 5px 15px rgba(0,242,255,0.2); }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
-        .card span { display: block; padding: 10px; font-size: 0.75rem; text-align: center; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .category-section { scroll-margin-top: 100px; display: none; margin-bottom: 50px; }
+        h2 { font-family: 'Orbitron'; font-size: 1.3rem; border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 25px; }
+        
+        .movie-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* PORTADAS MÁS ANCHAS */
+            gap: 25px; 
+        }
+        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; transition: 0.4s; cursor: pointer; border: 1px solid #222; }
+        .card:hover { transform: scale(1.05); border-color: var(--cyber); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
+        .card span { display: block; padding: 12px; font-size: 0.9rem; text-align: center; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* PLAYER */
+        /* REPRODUCTOR */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
         .player-header { position: absolute; top: 0; width: 100%; padding: 15px; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .close-btn { background: var(--primary); color: #fff; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; }
+        .close-btn { background: var(--primary); color: #fff; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; font-weight: bold; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        @media (max-width: 600px) { .main-slider { height: 250px; } .movie-grid { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); } }
+        @media (max-width: 600px) { 
+            .main-slider { height: 230px; } 
+            .movie-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; } /* Portadas grandes en móvil */
+            h2 { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
@@ -82,10 +86,7 @@
 <div id="loader">
     <div class="cyber-bg"></div>
     <div class="loader-content">
-        <div class="logo-box">
-            <img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="loader-logo">
-            <div class="scan-line"></div>
-        </div>
+        <div class="logo-box"><img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="loader-logo"><div class="scan-line"></div></div>
         <div class="loader-text">
             <h1>SISTEMA ONLINE</h1>
             <p class="welcome-msg">Bienvenidos a esta página...</p>
@@ -96,9 +97,7 @@
     </div>
 </div>
 
-<header>
-    <img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="site-logo" onclick="window.scrollTo(0,0)">
-</header>
+<header><img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="site-logo" onclick="window.scrollTo(0,0)"></header>
 
 <div class="nav-container">
     <div class="category-nav">
@@ -110,7 +109,7 @@
         <a href="#series-sec">Series</a>
         <a href="#party-sec" style="color:var(--cyber); border-color:var(--cyber);">Party Play</a>
     </div>
-    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar contenido..." onkeyup="filterCards()">
+    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar título o categoría..." onkeyup="filterCards()">
 </div>
 
 <div class="main-slider">
@@ -131,7 +130,7 @@
 
 <div id="videoPlayer" class="player-modal">
     <div class="player-header">
-        <div id="playerTitle" style="font-family:'Orbitron'; font-size:12px;">CARGANDO...</div>
+        <div id="playerTitle" style="font-family:'Orbitron'; font-size:12px; color:white;">CARGANDO...</div>
         <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
     </div>
     <iframe id="videoIframe" allowfullscreen></iframe>
@@ -146,7 +145,9 @@
             
             data.forEach(item => {
                 const tipos = item.tipos || [item.tipo];
-                if(tipos.includes('slider')) track.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
+                if(tipos.includes('slider')) {
+                    track.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
+                }
                 if(tipos.includes('promo')) {
                     const ad = document.getElementById('ad-top');
                     ad.style.display = 'block';
@@ -161,9 +162,15 @@
                     }
                 });
             });
+            
+            // Iniciar slider y loader
             startSlider();
             runLoader();
-        } catch (e) { document.getElementById('loader').style.display='none'; }
+            
+        } catch (e) { 
+            console.log(e);
+            document.getElementById('loader').style.display='none'; 
+        }
     }
 
     function runLoader() {
@@ -171,15 +178,25 @@
         const bar = document.getElementById('pBar'), txt = document.getElementById('pText');
         const int = setInterval(() => {
             p++; bar.style.width = p + "%"; txt.innerText = p + "%";
-            if(p >= 100) { clearInterval(int); setTimeout(() => document.getElementById('loader').classList.add('loader-hidden'), 600); }
-        }, 45); // 4.5 segundos total aprox
+            if(p >= 100) { 
+                clearInterval(int); 
+                setTimeout(() => document.getElementById('loader').classList.add('loader-hidden'), 600); 
+            }
+        }, 45); // 4.5 a 5 segundos
     }
 
     function startSlider() {
         const track = document.getElementById('sliderTrack');
         let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        if(slides.length > 1) setInterval(() => { index = (index + 1) % slides.length; track.style.transform = `translateX(-${index * 100}%)`; }, 5000);
+        const slides = document.getElementsByClassName('slide');
+        
+        if(slides.length > 1) {
+            setInterval(() => {
+                index++;
+                if(index >= slides.length) index = 0;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }, 5000); // Cambia cada 5 segundos
+        }
     }
 
     function openPlayer(url, title, tags) {
