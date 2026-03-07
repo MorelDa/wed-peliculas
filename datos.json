@@ -1,0 +1,117 @@
+[
+  {
+    "tipo": "accion",
+    "titulo": "Superman",
+    "img": "https://es.web.img3.acsta.net/c_310_420/img/b3/3e/b33e01f98f8ca3702a3554791633fd6c.jpg",
+    "url": "https://morelda.github.io/su-per-m/"
+  },
+  {
+    "tipos": [
+      "drama",
+      "comedia",
+      "biopic"
+    ],
+    "titulo": "El paseo 8",
+    "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/oP4BuJ4toBC5KLczNy9c38cMgbr.jpg",
+    "url": "https://morelda.github.io/el-paseo/"
+  },
+  {
+    "tipos": [
+      "terror",
+      "comedia"
+    ],
+    "titulo": "Scary Movie 5",
+    "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/mjsX6YYZEepnuJ6F04MAGGOSdbJ.jpg",
+    "url": "https://morelda.github.io/SCARY/"
+  },
+  {
+    "tipos": [
+      "accion",
+      "terror"
+    ],
+    "titulo": "ANACONDA 2025",
+    "img": "https://media.themoviedb.org/t/p/w600_and_h900_face/zX1KJPiGTrzpFcjfOWlmqdRgpQd.jpg",
+    "url": "https://morelda.github.io/anaconda/"
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/1zphNXzD/hoh.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/fbxn0ybf/l.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMb/Mesa-de-trabajo-1.png",
+    "url": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMp/Mesa-de-trabajo-1-GV.png",
+    "url": ""
+  },
+  {
+    "tipos": [
+      "drama",
+      "comedia",
+      "biopic"
+    ],
+    "titulo": "Intocable",
+    "img": "https://es.web.img2.acsta.net/c_310_420/medias/nmedia/18/85/98/42/20002205.jpg",
+    "url": "https://morelda.github.io/intocable/"
+  },
+  {
+    "tipos": [
+      "accion"
+    ],
+    "titulo": "Ejecutor (1986)",
+    "img": "https://es.web.img2.acsta.net/c_310_420/medias/nmedia/18/79/19/94/20531678.jpg",
+    "url": "https://morelda.github.io/ejecutory/"
+  },
+  {
+    "tipos": [
+      "drama"
+    ],
+    "titulo": "No dejemos que esta noche todo se pierda",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/iQPEEF2RmCBxl8DNIAZUnmRW1Gx.jpg",
+    "url": "https://morelda.github.io/No-nos-dejes-caer-esta-noche/"
+  },
+  {
+    "tipos": [
+      "romance",
+      "drama"
+    ],
+    "titulo": "Todos los días de mi vida",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/kbTtU8LXhH8MLB7EF7hBZy3WUYC.jpg",
+    "url": "https://morelda.github.io/Todos-los-d-as-de-mi-vida/"
+  },
+  {
+    "titulo": "Me casé con un boludo",
+    "tipos": [
+      "Comedia",
+      "Comedia romántica",
+      "Romance"
+    ],
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/rWo38m3XwcbOeArt2UOixPtkoB9.jpg",
+    "url": "https://morelda.github.io/Me-cas-con-un-boludo/"
+  },
+  {
+    "titulo": "El juego del calamar 1",
+    "img": "https://pics.filmaffinity.com/squid_game-688981365-mmed.jpg",
+    "url": "https://morelda.github.io/caamar1/",
+    "tipos": [
+      "Acción",
+      "Drama",
+      "Suspenso"
+    ],
+    "temporada": 1,
+    "episodio": null
+  }
+]
