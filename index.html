@@ -7,70 +7,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #e50914; --cyber: #00f2ff; --bg: #050505; --card-bg: #121212; }
-        html { scroll-behavior: smooth; }
         body { background: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* PRELOADER (5 SEGUNDOS) */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: flex; justify-content: center; align-items: center;
-            z-index: 10000;
-        }
-        .loader-content { text-align: center; z-index: 2; width: 300px; }
-        .loader-logo { max-height: 80px; filter: drop-shadow(0 0 10px var(--cyber)); margin-bottom: 20px; }
-        .progress-box { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
-        .progress-bar { width: 0%; height: 100%; background: var(--cyber); box-shadow: 0 0 15px var(--cyber); }
-        .loader-hidden { opacity: 0 !important; visibility: hidden !important; transition: 1s ease-in-out; }
+        /* PRELOADER 5 SEG */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 10000; }
+        .loader-content { text-align: center; width: 280px; }
+        .loader-logo { max-height: 70px; filter: drop-shadow(0 0 8px var(--cyber)); margin-bottom: 15px; }
+        .progress-box { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar { width: 0%; height: 100%; background: var(--cyber); }
+        .loader-hidden { opacity: 0; visibility: hidden; transition: 0.8s; }
 
-        /* HEADER - LOGO A LA IZQUIERDA */
+        /* HEADER - LOGO IZQUIERDA */
         header { 
-            height: 70px; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; 
-            display: flex; align-items: center; padding: 0 4%; border-bottom: 1px solid rgba(255,255,255,0.1); 
+            height: 65px; background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; 
+            display: flex; align-items: center; padding: 0 30px; border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
-        .site-logo { max-height: 45px; cursor: pointer; }
+        .site-logo { max-height: 40px; cursor: pointer; }
 
-        /* NAV Y BUSCADOR */
-        .nav-container { margin-top: 90px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; width: 95%; }
-        .category-nav a { background: #111; color: #fff; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: bold; border: 1px solid #333; text-transform: uppercase; }
-        .search-bar { width: 85%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #444; background: #000; color: white; outline: none; }
+        /* NAV */
+        .nav-container { margin-top: 85px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .category-nav a { background: #111; color: #fff; padding: 7px 15px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; border: 1px solid #333; text-transform: uppercase; }
+        .search-bar { width: 90%; max-width: 450px; padding: 10px 20px; border-radius: 25px; border: 1px solid #444; background: #000; color: #fff; outline: none; }
 
         /* SLIDER TOP */
-        .main-slider { width: 95%; max-width: 1200px; height: 400px; margin: 25px auto; overflow: hidden; border-radius: 20px; }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease; }
+        .main-slider { width: 96%; max-width: 1200px; height: 380px; margin: 20px auto; overflow: hidden; border-radius: 15px; position: relative; }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
         .slide { min-width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* FILAS DE PELÍCULAS CON INTERACCIÓN TOTAL */
-        .category-section { margin-bottom: 40px; }
-        h2 { font-family: 'Orbitron'; font-size: 1.1rem; margin-left: 4%; border-left: 4px solid var(--primary); padding-left: 12px; margin-bottom: 15px; }
+        /* FILAS DE PELÍCULAS - SCROLL SUAVE */
+        .category-section { margin-bottom: 30px; }
+        h2 { font-family: 'Orbitron'; font-size: 1rem; margin-left: 4%; border-left: 4px solid var(--primary); padding-left: 10px; margin-bottom: 10px; }
 
         .carousel-wrapper { 
-            width: 100%; overflow-x: scroll; display: flex; 
+            width: 100%; overflow-x: auto; display: flex; 
             scrollbar-width: none; -ms-overflow-style: none;
-            cursor: grab; user-select: none;
+            cursor: grab;
         }
         .carousel-wrapper::-webkit-scrollbar { display: none; }
-        .carousel-wrapper:active { cursor: grabbing; }
-
-        .movie-grid { display: flex; gap: 18px; padding: 10px 4%; }
+        
+        .movie-grid { display: flex; gap: 15px; padding: 10px 4%; }
 
         .card { 
-            width: 200px; background: var(--card-bg); border-radius: 12px; 
+            width: 180px; background: var(--card-bg); border-radius: 10px; 
             flex-shrink: 0; border: 1px solid #222; overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--cyber); }
+        .card:hover { transform: scale(1.05); border-color: var(--cyber); }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; pointer-events: none; }
-        .card span { display: block; padding: 10px; font-size: 0.8rem; text-align: center; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card span { display: block; padding: 8px; font-size: 0.75rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* PLAYER */
+        /* MODAL */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .player-header { position: absolute; top: 0; width: 100%; padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 11; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
-        .close-btn { background: var(--primary); color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary); color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; z-index: 10001; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        @media (max-width: 600px) { .card { width: 150px; } .main-slider { height: 200px; } }
+        @media (max-width: 600px) { .card { width: 140px; } .main-slider { height: 220px; } }
     </style>
 </head>
 <body>
@@ -79,7 +72,6 @@
     <div class="loader-content">
         <img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="loader-logo">
         <div class="progress-box"><div class="progress-bar" id="pBar"></div></div>
-        <p style="font-family:'Orbitron'; font-size:10px; margin-top:10px; color:var(--cyber)">SISTEMA KEVIN DAVID</p>
     </div>
 </div>
 
@@ -91,25 +83,22 @@
     <div class="category-nav">
         <a href="#accion-sec">Acción</a><a href="#terror-sec">Terror</a><a href="#biopic-sec">Biopic</a>
         <a href="#drama-sec">Drama</a><a href="#comedia-sec">Comedia</a><a href="#series-sec">Series</a>
-        <a href="#party-sec" style="color:var(--cyber)">Party Play</a>
     </div>
-    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar contenido..." onkeyup="filterCards()">
+    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterCards()">
 </div>
 
 <div class="main-slider"><div class="slider-track" id="sliderTrack"></div></div>
-<div class="container" id="content-container"></div>
+<div id="content-container"></div>
 
 <div id="videoPlayer" class="player-modal">
-    <div class="player-header">
-        <div id="playerTitle" style="font-size:12px; font-family:'Orbitron'"></div>
-        <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
-    </div>
+    <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
     <iframe id="videoIframe" allowfullscreen></iframe>
 </div>
 
 <script>
     const categorias = ["accion", "terror", "biopic", "drama", "comedia", "series", "party-play"];
-    let isDown = false, startX, scrollLeft, activeWrappers = [];
+    let userInteracting = false;
+    let interactionTimer;
 
     async function loadContent() {
         try {
@@ -139,10 +128,10 @@
                 });
             });
 
-            initInteraction();
+            startAutoScroll();
             startSlider();
             runLoader();
-        } catch (e) { document.getElementById('loader').style.display='none'; }
+        } catch (e) { console.log(e); }
     }
 
     function runLoader() {
@@ -153,38 +142,42 @@
         }, 45);
     }
 
-    function initInteraction() {
+    function startAutoScroll() {
         const wrappers = document.querySelectorAll('.carousel-wrapper');
         
         wrappers.forEach(wrapper => {
-            let speed = 2.5; // VELOCIDAD RÁPIDA
-            let userTouching = false;
+            let scrollAmount = 0;
+            let step = 0.6; // VELOCIDAD SUAVE (Bájalo más si quieres más lento, ej: 0.4)
 
-            // Movimiento automático
-            const autoMove = () => {
-                if(!userTouching) {
-                    wrapper.scrollLeft += speed;
-                    if(wrapper.scrollLeft >= (wrapper.scrollWidth - wrapper.clientWidth - 1)) wrapper.scrollLeft = 0;
+            function stepScroll() {
+                if (!userInteracting) {
+                    wrapper.scrollLeft += step;
+                    if (wrapper.scrollLeft >= (wrapper.scrollWidth - wrapper.clientWidth - 1)) {
+                        wrapper.scrollLeft = 0;
+                    }
                 }
-                requestAnimationFrame(autoMove);
+                requestAnimationFrame(stepScroll);
+            }
+
+            // Eventos para detectar si el usuario toca la pantalla
+            const stopAuto = () => {
+                userInteracting = true;
+                clearTimeout(interactionTimer);
             };
-            autoMove();
 
-            // Interacción con Mouse/Dedo
-            wrapper.addEventListener('mousedown', (e) => { isDown = true; userTouching = true; startX = e.pageX - wrapper.offsetLeft; scrollLeft = wrapper.scrollLeft; });
-            wrapper.addEventListener('mouseleave', () => { isDown = false; setTimeout(() => userTouching = false, 2000); });
-            wrapper.addEventListener('mouseup', () => { isDown = false; setTimeout(() => userTouching = false, 2000); });
-            wrapper.addEventListener('mousemove', (e) => {
-                if(!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - wrapper.offsetLeft;
-                const walk = (x - startX) * 2;
-                wrapper.scrollLeft = scrollLeft - walk;
-            });
+            const resumeAuto = () => {
+                interactionTimer = setTimeout(() => {
+                    userInteracting = false;
+                }, 2500); // Espera 2.5 segundos antes de volver a moverse solo
+            };
 
-            // Táctil (Móvil)
-            wrapper.addEventListener('touchstart', () => { userTouching = true; });
-            wrapper.addEventListener('touchend', () => { setTimeout(() => userTouching = false, 2000); });
+            wrapper.addEventListener('touchstart', stopAuto);
+            wrapper.addEventListener('touchend', resumeAuto);
+            wrapper.addEventListener('mousedown', stopAuto);
+            wrapper.addEventListener('mouseup', resumeAuto);
+            wrapper.addEventListener('mouseleave', resumeAuto);
+
+            requestAnimationFrame(stepScroll);
         });
     }
 
@@ -202,7 +195,6 @@
 
     function openPlayer(url, title) {
         document.getElementById('videoIframe').src = url;
-        document.getElementById('playerTitle').innerText = title;
         document.getElementById('videoPlayer').style.display = 'block';
     }
 
