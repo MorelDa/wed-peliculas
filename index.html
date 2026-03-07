@@ -9,7 +9,7 @@
         :root { --primary: #e50914; --cyber: #00f2ff; --bg: #050505; --card-bg: #121212; }
         body { background: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* PRELOADER 5 SEG */
+        /* PRELOADER */
         #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 10000; }
         .loader-content { text-align: center; width: 280px; }
         .loader-logo { max-height: 70px; filter: drop-shadow(0 0 8px var(--cyber)); margin-bottom: 15px; }
@@ -24,48 +24,49 @@
         }
         .site-logo { max-height: 45px; cursor: pointer; }
 
-        /* NAV CON ROMANCE */
-        .nav-container { margin-top: 90px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .category-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; width: 95%; }
-        .category-nav a { background: #111; color: #fff; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: bold; border: 1px solid #333; text-transform: uppercase; transition: 0.3s; }
-        .category-nav a:hover { border-color: var(--primary); color: var(--primary); }
-        .search-bar { width: 85%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid #444; background: #000; color: white; outline: none; }
+        /* NAVEGACIÓN DE CATEGORÍAS (SCROLL HORIZONTAL) */
+        .nav-container { margin-top: 85px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .category-nav { 
+            display: flex; gap: 10px; width: 95%; overflow-x: auto; padding: 10px 0;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .category-nav a { 
+            background: #111; color: #fff; padding: 7px 18px; border-radius: 20px; 
+            text-decoration: none; font-size: 0.7rem; font-weight: bold; 
+            border: 1px solid #333; text-transform: uppercase; white-space: nowrap; transition: 0.3s;
+        }
+        .category-nav a:hover { border-color: var(--cyber); color: var(--cyber); }
+        .search-bar { width: 85%; max-width: 500px; padding: 10px 20px; border-radius: 25px; border: 1px solid #444; background: #000; color: white; outline: none; }
 
         /* SLIDER TOP */
-        .main-slider { width: 95%; max-width: 1200px; height: 400px; margin: 25px auto; overflow: hidden; border-radius: 20px; position: relative; }
+        .main-slider { width: 95%; max-width: 1200px; height: 380px; margin: 15px auto; overflow: hidden; border-radius: 20px; position: relative; }
         .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
         .slide { min-width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* FILAS DE PELÍCULAS - SCROLL SUAVE */
-        .category-section { margin-bottom: 40px; }
-        h2 { font-family: 'Orbitron'; font-size: 1.1rem; margin-left: 4%; border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
+        /* FILAS DE PELÍCULAS */
+        .category-section { margin-bottom: 30px; }
+        h2 { font-family: 'Orbitron'; font-size: 1rem; margin-left: 4%; border-left: 4px solid var(--primary); padding-left: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .carousel-wrapper { 
-            width: 100%; overflow-x: auto; display: flex; 
-            scrollbar-width: none; -ms-overflow-style: none;
-            cursor: grab;
-        }
+        .carousel-wrapper { width: 100%; overflow-x: auto; display: flex; scrollbar-width: none; cursor: grab; }
         .carousel-wrapper::-webkit-scrollbar { display: none; }
-        
-        .movie-grid { display: flex; gap: 18px; padding: 10px 4%; }
+        .movie-grid { display: flex; gap: 15px; padding: 10px 4%; }
 
         .card { 
-            width: 200px; background: var(--card-bg); border-radius: 12px; 
-            flex-shrink: 0; border: 1px solid #222; overflow: hidden;
-            transition: 0.3s;
+            width: 180px; background: var(--card-bg); border-radius: 10px; 
+            flex-shrink: 0; border: 1px solid #222; overflow: hidden; transition: 0.3s;
         }
-        .card:hover { transform: scale(1.05); border-color: var(--cyber); z-index: 10; }
+        .card:hover { transform: scale(1.05); border-color: var(--cyber); z-index: 5; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; pointer-events: none; }
-        .card span { display: block; padding: 10px; font-size: 0.85rem; text-align: center; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card span { display: block; padding: 8px; font-size: 0.75rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* MODAL */
+        /* PLAYER */
         .player-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; }
-        .player-header { position: absolute; top: 0; width: 100%; padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 11; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
-        .close-btn { background: var(--primary); color: white; padding: 8px 18px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; font-weight: bold; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: var(--primary); color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Orbitron'; z-index: 10001; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        @media (max-width: 600px) { .card { width: 150px; } .main-slider { height: 230px; } }
+        @media (max-width: 600px) { .card { width: 140px; } .main-slider { height: 220px; } }
     </style>
 </head>
 <body>
@@ -77,37 +78,33 @@
     </div>
 </div>
 
-<header>
-    <img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="site-logo" onclick="window.scrollTo(0,0)">
-</header>
+<header><img src="https://i.postimg.cc/X7bmMQHY/logo.png" class="site-logo" onclick="window.scrollTo(0,0)"></header>
 
 <div class="nav-container">
-    <div class="category-nav">
-        <a href="#accion-sec">Acción</a>
-        <a href="#terror-sec">Terror</a>
-        <a href="#romance-sec" style="border-color: #ff69b4; color: #ff69b4;">Romance</a>
-        <a href="#comedia-sec">Comedia</a>
-        <a href="#series-sec">Series</a>
-        <a href="#party-sec" style="color:var(--cyber); border-color:var(--cyber);">Party Play</a>
-    </div>
-    <input type="text" id="searchInput" class="search-bar" placeholder="¿Qué quieres ver hoy?" onkeyup="filterCards()">
+    <div class="category-nav" id="main-nav">
+        </div>
+    <input type="text" id="searchInput" class="search-bar" placeholder="Buscar películas, anime, series..." onkeyup="filterCards()">
 </div>
 
 <div class="main-slider"><div class="slider-track" id="sliderTrack"></div></div>
-
 <div id="content-container"></div>
 
 <div id="videoPlayer" class="player-modal">
-    <div class="player-header">
-        <div id="playerTitle" style="font-size:12px; font-family:'Orbitron'"></div>
-        <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
-    </div>
+    <div class="close-btn" onclick="closePlayer()">CERRAR [X]</div>
     <iframe id="videoIframe" allowfullscreen></iframe>
 </div>
 
 <script>
-    // Añadida categoría 'romance' a la lista
-    const categorias = ["accion", "terror", "romance", "biopic", "drama", "comedia", "series", "party-play"];
+    const listaCompleta = [
+        "Acción", "Aventura", "Comedia", "Drama", "Terror", "Horror", "Ciencia ficción", "Fantasía", "Romance", 
+        "Suspenso", "Thriller", "Misterio", "Animación", "Anime", "Caricatura", "Cartoon", "Musical", "Crimen", 
+        "Policial", "Guerra", "Bélico", "Histórico", "Biográfico", "Deporte", "Western", "Familiar", "Infantil", 
+        "Documental", "Comedia romántica", "Comedia negra", "Terror psicológico", "Slasher", "Apocalíptico", 
+        "Postapocalíptico", "Superhéroes", "Artes marciales", "Espionaje", "Road movie", "Drama romántico", 
+        "Experimental", "Cine independiente", "Indie", "Cine noir", "Cyberpunk", "Steampunk", "Mockumentary", 
+        "Found footage", "Cine mudo", "Cine de culto", "Party Play"
+    ];
+
     let userInteracting = false;
     let interactionTimer;
 
@@ -115,27 +112,36 @@
         try {
             const res = await fetch('datos.json');
             const data = await res.json();
+            const nav = document.getElementById('main-nav');
             const track = document.getElementById('sliderTrack');
             const container = document.getElementById('content-container');
-            
-            categorias.forEach(cat => {
+
+            // Generar Menú
+            listaCompleta.forEach(cat => {
+                const id = cat.toLowerCase().replace(/ /g, "-");
+                nav.innerHTML += `<a href="#${id}-sec">${cat}</a>`;
+                
+                // Crear Secciones ocultas inicialmente
                 const section = document.createElement('div');
                 section.className = 'category-section';
-                section.id = `${cat}-sec`;
+                section.id = `${id}-sec`;
                 section.style.display = 'none';
-                section.innerHTML = `<h2>${cat.toUpperCase()}</h2><div class="carousel-wrapper" id="scroll-${cat}"><div class="movie-grid" id="${cat}-grid"></div></div>`;
+                section.innerHTML = `<h2>${cat}</h2><div class="carousel-wrapper"><div class="movie-grid" id="${id}-grid"></div></div>`;
                 container.appendChild(section);
             });
 
+            // Repartir Películas
             data.forEach(item => {
                 const tipos = item.tipos || [item.tipo];
                 if(tipos.includes('slider')) track.innerHTML += `<div class="slide"><img src="${item.img}"></div>`;
+                
                 tipos.forEach(t => {
-                    const grid = document.getElementById(`${t}-grid`);
+                    const gridId = t.toLowerCase().replace(/ /g, "-");
+                    const grid = document.getElementById(`${gridId}-grid`);
                     if(grid) {
-                        document.getElementById(`${t}-sec`).style.display = 'block';
+                        document.getElementById(`${gridId}-sec`).style.display = 'block';
                         grid.innerHTML += `
-                            <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}', '${item.titulo}')">
+                            <div class="card" data-title="${item.titulo}" onclick="openPlayer('${item.url}')">
                                 <img src="${item.img}">
                                 <span>${item.titulo}</span>
                             </div>`;
@@ -146,7 +152,28 @@
             startAutoScroll();
             startSlider();
             runLoader();
-        } catch (e) { console.log("Error cargando datos:", e); }
+        } catch (e) { console.error(e); }
+    }
+
+    function startAutoScroll() {
+        const wrappers = document.querySelectorAll('.carousel-wrapper');
+        wrappers.forEach(wrapper => {
+            let step = 0.5; 
+            function stepScroll() {
+                if (!userInteracting) {
+                    wrapper.scrollLeft += step;
+                    if (wrapper.scrollLeft >= (wrapper.scrollWidth - wrapper.clientWidth - 1)) wrapper.scrollLeft = 0;
+                }
+                requestAnimationFrame(stepScroll);
+            }
+            const stop = () => { userInteracting = true; clearTimeout(interactionTimer); };
+            const resume = () => { interactionTimer = setTimeout(() => { userInteracting = false; }, 2500); };
+            wrapper.addEventListener('touchstart', stop);
+            wrapper.addEventListener('touchend', resume);
+            wrapper.addEventListener('mousedown', stop);
+            wrapper.addEventListener('mouseup', resume);
+            requestAnimationFrame(stepScroll);
+        });
     }
 
     function runLoader() {
@@ -155,34 +182,6 @@
             p++; bar.style.width = p + "%";
             if(p >= 100) { clearInterval(int); document.getElementById('loader').classList.add('loader-hidden'); }
         }, 45);
-    }
-
-    function startAutoScroll() {
-        const wrappers = document.querySelectorAll('.carousel-wrapper');
-        wrappers.forEach(wrapper => {
-            let step = 0.5; // VELOCIDAD SEDOSA Y SUAVE
-
-            function stepScroll() {
-                if (!userInteracting) {
-                    wrapper.scrollLeft += step;
-                    if (wrapper.scrollLeft >= (wrapper.scrollWidth - wrapper.clientWidth - 1)) {
-                        wrapper.scrollLeft = 0;
-                    }
-                }
-                requestAnimationFrame(stepScroll);
-            }
-
-            const stopAuto = () => { userInteracting = true; clearTimeout(interactionTimer); };
-            const resumeAuto = () => { interactionTimer = setTimeout(() => { userInteracting = false; }, 2500); };
-
-            wrapper.addEventListener('touchstart', stopAuto, {passive: true});
-            wrapper.addEventListener('touchend', resumeAuto, {passive: true});
-            wrapper.addEventListener('mousedown', stopAuto);
-            wrapper.addEventListener('mouseup', resumeAuto);
-            wrapper.addEventListener('mouseleave', resumeAuto);
-
-            requestAnimationFrame(stepScroll);
-        });
     }
 
     function startSlider() {
@@ -197,17 +196,14 @@
         }, 5000);
     }
 
-    function openPlayer(url, title) {
+    function openPlayer(url) {
         document.getElementById('videoIframe').src = url;
-        document.getElementById('playerTitle').innerText = title;
         document.getElementById('videoPlayer').style.display = 'block';
-        document.body.style.overflow = 'hidden';
     }
 
     function closePlayer() {
         document.getElementById('videoPlayer').style.display = 'none';
         document.getElementById('videoIframe').src = '';
-        document.body.style.overflow = 'auto';
     }
 
     function filterCards() {
@@ -216,7 +212,6 @@
             card.style.display = card.getAttribute('data-title').toLowerCase().includes(input) ? "block" : "none";
         });
     }
-
     window.onload = loadContent;
 </script>
 </body>
