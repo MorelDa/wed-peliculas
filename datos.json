@@ -1,0 +1,181 @@
+[
+  {
+    "tipo": "pelicula",
+    "titulo": "Los Colorado",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/4HV6Vd3QL9C29SZF4KBJ499bUet.jpg",
+    "url": "https://morelda.github.io/los-colos/",
+    "year": "2026",
+    "tipos": [
+      "Animación",
+      "Comedia"
+    ],
+    "synopsis": "El Chapulín Colorado vuelve y ahora tiene familia. Junto a su esposa, sus hijos y la abuela, deberá salvar Ciudad Caótica mientras enfrenta el caos en casa. De cavernícolas a seres intergalácticos, nadie escapará del Chipote Chillón."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Harina",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/aqW5UWQ2M13lQWVrGNrUzs3hn2x.jpg",
+    "url": "https://morelda.github.io/harina/",
+    "year": "2022",
+    "etiquetas": [
+      "Comedia",
+      "Action & Adventure",
+      "Crimen"
+    ],
+    "sinopsis": "El Teniente y Ramírez se enfrentan con un \"serial killer\", cuyo objetivo es terminar con los \"influencers\". Buscarán atrapar al criminal batallando al mismo tiempo con el sistema judicial mexicano."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Superman",
+    "img": "https://www.themoviedb.org/t/p/w500/fvUJb08yatV2b3NUSwuYdQKYoFd.jpg",
+    "url": "https://morelda.github.io/su-per-m/",
+    "year": "2025",
+    "etiquetas": [
+      "Acción",
+      "Aventura",
+      "Ciencia ficción"
+    ],
+    "sinopsis": "Mientras el mundo pierde la fe en la bondad, Clark Kent, un periodista en Metrópolis, se embarca en un viaje para reconciliar su herencia kryptoniana con su educación humana como Superman."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "El paseo 8",
+    "img": "https://www.themoviedb.org/t/p/w500/oP4BuJ4toBC5KLczNy9c38cMgbr.jpg",
+    "url": "https://morelda.github.io/el-paseo/",
+    "year": "2025",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Mientras el mundo pierde la fe en la bondad, Clark Kent, un periodista en Metrópolis, se embarca en un viaje para reconciliar su herencia kryptoniana con su educación humana como Superman."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Scary Movie 5",
+    "img": "https://www.themoviedb.org/t/p/w500/mjsX6YYZEepnuJ6F04MAGGOSdbJ.jpg",
+    "url": "https://morelda.github.io/SCARY/",
+    "year": "2013",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Hogar con su familia recién formada, los padres felices Dan y Jody son frecuentados por actividades siniestras, paranormales. Decididos a expulsar a la fuerza insidiosa, instalan cámaras de seguridad y descubren que su familia está siendo acosada por un demonio muerto malvado."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Anaconda",
+    "img": "https://www.themoviedb.org/t/p/w500/hENLu86h3zljg0x8bdy8cOUxZF5.jpg",
+    "url": "https://morelda.github.io/anaconda/",
+    "year": "2025",
+    "etiquetas": [
+      "Acción",
+      "Aventura",
+      "Comedia",
+      "Terror"
+    ],
+    "sinopsis": "Doug y Griff, amigos de toda la vida, atraviesan una crisis de mediana edad y deciden realizar el remake de su película favorita de su juventud: Anaconda (1997). Viajan a la selva amazónica para filmar su versión, pero pronto descubren que una anaconda real los acecha, convirtiendo su proyecto cinematográfico en una lucha por sobrevivir. La película combina comedia, acción y terror en una experiencia cinematográfica única."
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/1zphNXzD/hoh.png",
+    "url": "",
+    "year": "",
+    "etiquetas": [],
+    "sinopsis": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/fbxn0ybf/l.png",
+    "url": "",
+    "year": "",
+    "etiquetas": [],
+    "sinopsis": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMb/Mesa-de-trabajo-1.png",
+    "url": "",
+    "year": "",
+    "etiquetas": [],
+    "sinopsis": ""
+  },
+  {
+    "tipo": "slider",
+    "titulo": "",
+    "img": "https://i.postimg.cc/QMpGWCMp/Mesa-de-trabajo-1-GV.png",
+    "url": "",
+    "year": "",
+    "etiquetas": [],
+    "sinopsis": ""
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Amigos Intocables",
+    "img": "https://www.themoviedb.org/t/p/w500/fvX8t8VhUxz1YkYKCJTxSkDiZDY.jpg",
+    "url": "https://morelda.github.io/intocable/",
+    "year": "2011",
+    "etiquetas": [
+      "Comedia",
+      "Drama"
+    ],
+    "sinopsis": "Un hombre tetraplégico y millonario contrata como cuidador a domicilio a Driss, un inmigrante de un barrio marginal recién salido de la cárcel. Aunque no parece la persona más indicada, congenian hasta forjar una amistad tan sólida como inesperada."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Ejecutor",
+    "img": "https://www.themoviedb.org/t/p/w500/bwf66lMEAQyAaDxwjiy0xWDB0y2.jpg",
+    "url": "https://morelda.github.io/ejecutory/",
+    "year": "1986",
+    "etiquetas": [
+      "Acción"
+    ],
+    "sinopsis": "Mark Kaminsky es expulsado del FBI por maltratar a un sospechoso. Acaba ocupando el puesto de sheriff de una pequeña localidad de Carolina del Norte. El jefe del FBI Harry Shannon, cuyo hijo ha sido asesinado por un gángster llamado Patrovina, convence a Kaminsky para que se le una en una venganza personal con la promesa de ser readmitido en el FBI si Patrovina desaparece de la circulación. Para lograrlo Kaminsky debe adoptar una nueva personalidad e incorporarse a la banda de Patrovina."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "No nos dejes caer esta noche",
+    "img": "https://www.themoviedb.org/t/p/w500/loCToXfo1tB58ZtVzsQyiAZclTE.jpg",
+    "url": "https://morelda.github.io/No-nos-dejes-caer-esta-noche/",
+    "year": "2025",
+    "etiquetas": [
+      "Drama"
+    ],
+    "sinopsis": "El tumultuoso mundo de Bobo, una niña de 8 años cuya infancia transcurre en la granja familiar de Rodesia, ahora Zimbabue, mientras la guerra de los arbustos hace estragos. Con este violento telón de fondo, y a través de sus ojos, somos testigos del desesperado apego de la familia a la tierra africana y de las profundas cicatrices de una guerra que transforma la tierra y el alma."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Votos de amor",
+    "img": "https://www.themoviedb.org/t/p/w500/kbTtU8LXhH8MLB7EF7hBZy3WUYC.jpg",
+    "url": "https://morelda.github.io/Todos-los-d-as-de-mi-vida/",
+    "year": "2012",
+    "etiquetas": [
+      "Drama",
+      "Romance"
+    ],
+    "sinopsis": "Un accidente de coche pone a Paige en coma, y cuando se despierta con una severa pérdida de memoria, su marido Leo trabaja para ganar su corazón de nuevo."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Me casé con un boludo",
+    "img": "https://www.themoviedb.org/t/p/w500/rWo38m3XwcbOeArt2UOixPtkoB9.jpg",
+    "url": "https://morelda.github.io/Me-cas-con-un-boludo/",
+    "year": "2016",
+    "etiquetas": [
+      "Comedia",
+      "Romance"
+    ],
+    "sinopsis": "Fabián Brando y Florencia Córmik son actores. El es el más renombrado del país y ella es una completa desconocida. Durante el rodaje de un film inician un fogoso romance que, casi sin noviazgo mediante, termina en casamiento. Durante la luna de miel Florencia se da cuenta de que se casó con un idiota irrecuperable. Cuando Fabián se entera lo que ella piensa de él, idea un plan que sólo podrá llevar a cabo con la ayuda del guionista de sus películas más exitosas."
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "El juego del calamar",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/g72YfmqUU0AlbDXRiYmDZWs28f7.jpg",
+    "url": "https://morelda.github.io/caamar1/",
+    "year": "2021",
+    "etiquetas": [
+      "Drama"
+    ],
+    "sinopsis": "Cientos de personas con problemas de dinero aceptan una invitación rarísima para competir en juegos infantiles. Dentro los esperan un tentador premio y desafíos letales."
+  }
+]
