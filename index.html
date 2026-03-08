@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PARTY PLAY | Streaming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PARTY PLAY | Movilidad Total</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
@@ -15,39 +15,49 @@
             --text: #ffffff;
         }
 
-        /* EVITAR MOVIMIENTO LATERAL DE LA WEB */
+        /* --- SOLUCIÓN RADICAL AL DESLIZAMIENTO LATERAL --- */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         html, body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden; /* Prohibido el scroll horizontal en la raíz */
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Poppins', sans-serif;
+            position: fixed; /* Fija la base para evitar que el elástico del móvil lo mueva */
+            left: 0; top: 0;
+        }
+
+        /* Contenedor que permite scroll vertical pero bloquea el horizontal */
+        #app-wrapper {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden; /* Doble bloqueo */
             position: relative;
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
         }
 
-        /* ENTRADA */
-        #intro {
-            position: fixed; inset: 0; background: #000;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10000; transition: opacity 0.6s ease;
-        }
-        .intro-logo { font-family: 'Orbitron'; font-size: 2rem; color: var(--primary); letter-spacing: 5px; }
-
-        /* HEADER */
+        /* --- HEADER --- */
         header {
             height: 60px; padding: 0 5%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            position: fixed; width: 100%; top: 0; z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
             display: flex; align-items: center; justify-content: space-between;
-            box-sizing: border-box; border-bottom: 1px solid rgba(255,45,117,0.3);
+            border-bottom: 1px solid rgba(255,45,117,0.3);
         }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--primary); text-decoration: none; font-weight: 900; }
 
-        /* BUSCADOR CON LUPA */
+        /* --- BUSCADOR --- */
         .search-container {
             text-align: center;
-            margin: 90px auto 20px;
+            margin: 20px auto;
             padding: 0 5%;
             position: relative;
             max-width: 550px;
@@ -57,82 +67,93 @@
             padding: 12px 20px 12px 45px;
             border-radius: 30px;
             border: 1px solid #333; background: #111; color: white;
-            outline: none; font-size: 1rem; box-sizing: border-box;
+            outline: none; font-size: 1rem;
         }
-        .search-icon {
-            position: absolute; left: 35px; top: 50%;
-            transform: translateY(-50%); color: #666;
-        }
+        .search-icon { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); color: #666; }
 
-        /* BANNER (PUBLICIDAD) */
+        /* --- BANNER --- */
         .banner-wrapper {
-            width: 92%; margin: 10px auto;
+            width: 90%; margin: 10px auto;
             border-radius: 12px; overflow: hidden;
             aspect-ratio: 16 / 7; background: #000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .main-slider img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* CARRUSELES */
-        .main-content { padding: 20px 0 60px 0; width: 100%; }
+        /* --- CARRUSELES --- */
+        .main-content { padding: 10px 0 60px 0; width: 100%; }
         
-        .row-container { margin-bottom: 30px; width: 100%; overflow: hidden; }
+        .row-container { 
+            margin-bottom: 30px; 
+            width: 100vw; /* Forzamos el ancho visual exacto */
+            overflow: hidden; 
+        }
         
         .row-title {
-            font-family: 'Orbitron'; font-size: 1rem; color: var(--primary);
+            font-family: 'Orbitron'; font-size: 0.95rem; color: var(--primary);
             margin: 0 0 15px 5%; border-left: 3px solid var(--primary);
             padding-left: 10px; text-transform: uppercase;
         }
 
-        .swiper-container { padding-left: 5% !important; padding-right: 5% !important; }
+        /* Ajuste de Swiper para que no se salga */
+        .swiper-container { 
+            width: 100% !important;
+            padding-left: 5% !important; 
+            padding-right: 5% !important;
+            overflow: visible !important; /* Permite ver la siguiente tarjeta pero contenido por el wrapper */
+        }
 
         .card {
             background: var(--card-bg); border-radius: 8px; overflow: hidden;
             text-decoration: none; color: var(--text); display: block;
             border: 1px solid rgba(255,255,255,0.05);
-            /* ELIMINAMOS EL CURSOR SI ES TÁCTIL PARA EVITAR LAGG */
         }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
         .card .title { 
-            padding: 6px; font-size: 0.75rem; text-align: center; 
+            padding: 6px; font-size: 0.7rem; text-align: center; 
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
         }
 
-        @media (max-width: 600px) {
-            .banner-wrapper { aspect-ratio: 16 / 9; }
+        /* Pantalla de carga */
+        #intro {
+            position: fixed; inset: 0; background: #000;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; transition: opacity 0.5s ease;
         }
     </style>
 </head>
 <body>
 
-    <div id="intro"><div class="intro-logo">PARTY PLAY</div></div>
+    <div id="intro"><div style="font-family:'Orbitron'; color:var(--primary); font-size:1.5rem;">PARTY PLAY</div></div>
 
-    <header>
-        <a href="#" class="logo">PARTY PLAY</a>
-        <span onclick="location.reload()" style="cursor:pointer; font-size: 1.2rem;">🏠</span>
-    </header>
+    <div id="app-wrapper">
+        <header>
+            <a href="#" class="logo">PARTY PLAY</a>
+            <span onclick="location.reload()" style="cursor:pointer">🏠</span>
+        </header>
 
-    <div class="search-container">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
-    </div>
-
-    <div class="banner-wrapper">
-        <div class="swiper main-slider" id="topSlider">
-            <div class="swiper-wrapper" id="sliderItems"></div>
-            <div class="swiper-pagination"></div>
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
         </div>
-    </div>
 
-    <main class="main-content" id="contentRows"></main>
+        <div class="banner-wrapper">
+            <div class="swiper main-slider" id="topSlider">
+                <div class="swiper-wrapper" id="sliderItems"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <main class="main-content" id="contentRows"></main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        let moviesDB = [];
-
         window.onload = () => {
-            setTimeout(() => document.getElementById('intro').style.opacity = '0', 1000);
-            setTimeout(() => document.getElementById('intro').style.display = 'none', 1600);
+            setTimeout(() => {
+                const intro = document.getElementById('intro');
+                intro.style.opacity = '0';
+                setTimeout(() => intro.style.display = 'none', 500);
+            }, 1000);
             loadData();
         };
 
@@ -140,36 +161,26 @@
             try {
                 const res = await fetch('datos.json');
                 const data = await res.json();
-                moviesDB = data;
-
-                // Cargar Slider Superior
+                
+                // Banner
                 const sliders = data.filter(i => i.tipo === 'slider');
                 document.getElementById('sliderItems').innerHTML = sliders.map(s => `
                     <div class="swiper-slide"><img src="${s.img}"></div>
                 `).join('');
-                
-                new Swiper('#topSlider', {
-                    loop: true,
-                    autoplay: { delay: 4000 },
-                    pagination: { el: '.swiper-pagination', clickable: true },
-                });
+                new Swiper('#topSlider', { loop: true, autoplay: { delay: 3000 }, pagination: { el: '.swiper-pagination' } });
 
-                // Cargar todas las categorías del JSON
+                // Categorías
                 renderCategories(data.filter(i => i.titulo && i.tipo !== 'slider'));
-            } catch (e) { console.error("Error al cargar datos."); }
+            } catch (e) { console.log(e); }
         }
 
         function renderCategories(items) {
             const container = document.getElementById('contentRows');
             container.innerHTML = '';
-
-            // Extrae géneros de 'tipos' o 'etiquetas'
-            const genres = [...new Set(items.flatMap(m => m.tipos || m.etiquetas || ["Otros"]))].sort();
+            const genres = [...new Set(items.flatMap(m => m.tipos || m.etiquetas || ["Varios"]))].sort();
 
             genres.forEach((genre, idx) => {
-                const genreMovies = items.filter(m => (m.tipos || m.etiquetas || ["Otros"]).includes(genre));
-                if(genreMovies.length === 0) return;
-
+                const genreMovies = items.filter(m => (m.tipos || m.etiquetas || ["Varios"]).includes(genre));
                 const row = document.createElement('div');
                 row.className = 'row-container';
                 row.innerHTML = `
@@ -191,27 +202,21 @@
 
                 new Swiper(`#row-${idx}`, {
                     slidesPerView: 2.3,
-                    spaceBetween: 12,
+                    spaceBetween: 10,
                     freeMode: true,
                     grabCursor: true,
-                    autoplay: { delay: 5000 + (idx * 150), disableOnInteraction: false },
-                    breakpoints: {
-                        600: { slidesPerView: 3.5 },
-                        1024: { slidesPerView: 5.5 }
-                    }
+                    // Evita que el toque del carrusel mueva la página entera
+                    touchEventsTarget: 'container',
+                    breakpoints: { 768: { slidesPerView: 5.5 } }
                 });
             });
         }
 
         function filterAll() {
             const q = document.getElementById('searchInput').value.toLowerCase();
-            const slides = document.querySelectorAll('.swiper-slide');
-            slides.forEach(s => {
+            document.querySelectorAll('.swiper-slide').forEach(s => {
                 const card = s.querySelector('.card');
-                if(card) {
-                    const match = card.getAttribute('data-title').toLowerCase().includes(q);
-                    s.style.display = match ? "block" : "none";
-                }
+                if(card) s.style.display = card.dataset.title.toLowerCase().includes(q) ? "block" : "none";
             });
         }
     </script>
