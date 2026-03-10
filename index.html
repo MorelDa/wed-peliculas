@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Home</title>
+    <title>PARTY PLAY | Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -11,104 +11,108 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; }
 
-        /* HEADER & BUSCADOR */
+        /* HEADER ROSA */
         header { 
-            background: #000; 
-            padding: 15px 5%; 
+            background: var(--primary); 
+            padding: 20px 5%; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             gap: 15px;
-            border-bottom: 1px solid #222;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 100;
         }
-        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--primary); font-weight: 900; }
+        .logo-img { height: 55px; width: auto; object-fit: contain; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); }
 
         .search-container { width: 100%; max-width: 500px; }
         .search-bar { 
-            width: 100%; 
-            padding: 12px 20px; 
-            border-radius: 8px; 
-            border: 1px solid #333; 
-            background: #1a1a1c; 
-            color: white; 
-            outline: none; 
-            font-size: 0.9rem;
+            width: 100%; padding: 12px 25px; border-radius: 50px; border: none; 
+            background: #fff; color: #000; outline: none; font-size: 0.9rem;
         }
 
-        /* SLIDER (DEBAJO DEL BUSCADOR) */
-        .banner-wrapper { 
-            width: 100%; 
-            height: 60vh; /* Altura más cómoda para móviles */
-            position: relative; 
-            overflow: hidden; 
-            display: none; 
-        }
+        /* SLIDER PROFESIONAL */
+        .banner-wrapper { width: 100%; height: 70vh; position: relative; overflow: hidden; display: none; }
         .main-slider { height: 100%; width: 100%; }
-        .swiper-slide { position: relative; background: #000; }
         
-        /* Imagen del Slider */
+        .swiper-slide { position: relative; background: #000; overflow: hidden; }
+        
+        /* Efecto de Zoom Lento (Ken Burns) */
+        .promo-img { width: 100%; height: 100%; position: absolute; inset: 0; }
         .promo-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            opacity: 0.6; 
+            width: 100%; height: 100%; object-fit: cover; opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        /* Animación cuando la slide está activa */
+        .swiper-slide-active .promo-img img { 
+            opacity: 0.6;
+            animation: kenburns 6s ease-out forwards; 
         }
 
-        /* Degradado para que se vea el título */
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
         .promo-overlay { 
-            position: absolute; 
-            inset: 0; 
-            background: linear-gradient(to top, var(--bg) 10%, transparent 90%); 
+            position: absolute; inset: 0; 
+            background: linear-gradient(to top, var(--bg) 10%, transparent 60%, rgba(0,0,0,0.4) 100%); 
             z-index: 2; 
         }
 
-        /* Información del Slider (Solo Título y Botón) */
+        /* Animación de Textos */
         .promo-info { 
-            position: absolute; 
-            bottom: 30px; 
-            left: 5%; 
-            right: 5%; 
-            z-index: 3; 
-            text-align: left;
+            position: absolute; bottom: 50px; left: 8%; right: 8%; z-index: 3; 
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
+        .swiper-slide-active .promo-info { 
+            opacity: 1; transform: translateY(0); 
+            transition-delay: 0.5s;
+        }
+
         .promo-info h2 { 
-            font-family: 'Orbitron'; 
-            font-size: 1.8rem; 
-            margin: 0 0 15px 0; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-family: 'Orbitron'; font-size: 2.2rem; margin: 0 0 20px 0; 
+            text-shadow: 0 4px 15px rgba(0,0,0,1);
+            line-height: 1.1;
         }
         .btn-play { 
-            background: var(--primary); 
-            color: white; 
-            padding: 12px 25px; 
-            border-radius: 5px; 
-            font-weight: 900; 
-            text-decoration: none; 
-            display: inline-block; 
-            font-size: 0.8rem;
-            text-transform: uppercase;
+            background: var(--primary); color: white; padding: 14px 35px; border-radius: 50px; 
+            font-weight: 900; text-decoration: none; display: inline-block; 
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.4);
+            transition: 0.3s;
         }
+        .btn-play:hover { transform: scale(1.05); background: #ff5294; }
+
+        /* Paginación Pro */
+        .swiper-pagination-bullet { width: 12px; height: 12px; background: #fff !important; opacity: 0.3; }
+        .swiper-pagination-bullet-active { width: 30px; border-radius: 6px; background: var(--primary) !important; opacity: 1; }
 
         /* CATEGORÍAS */
-        .row-title { font-family: 'Orbitron'; font-size: 1rem; margin: 30px 0 15px 5%; color: var(--primary); }
+        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+        .row-title::before { content: ''; width: 4px; height: 20px; background: var(--primary); border-radius: 2px; }
         .swiper-container { padding: 0 5% !important; overflow: visible !important; }
-        .card { background: #1a1a1c; border-radius: 6px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #222; }
+        .card { background: #1a1a1c; border-radius: 12px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card:hover { transform: scale(1.08); border-color: var(--primary); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
-        .card span { padding: 8px; font-size: 0.75rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
 
-        #loading { text-align: center; padding: 50px; font-family: 'Orbitron'; color: var(--primary); }
+        #loading { text-align: center; padding: 150px 0; font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem; letter-spacing: 4px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">PARTY PLAY</div>
+        <img src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" alt="Logo" class="logo-img">
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar película..." onkeyup="filterAll()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="¿Qué quieres ver hoy?" onkeyup="filterAll()">
         </div>
     </header>
 
-    <div id="loading">CONECTANDO...</div>
+    <div id="loading">CARGANDO...</div>
 
     <div id="app" style="display:none">
         <div class="banner-wrapper" id="bannerBox">
@@ -129,7 +133,7 @@
                 const data = await r.json();
                 renderWeb(data);
             } catch (e) {
-                document.getElementById('loading').innerHTML = "ERROR AL CARGAR";
+                document.getElementById('loading').innerHTML = "ERROR DE CONEXIÓN";
             }
         }
 
@@ -137,9 +141,8 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('app').style.display = 'block';
 
-            // SLIDER: Solo las marcadas como enSlider en el Admin
             const destacados = pelis.filter(p => p.enSlider === true);
-            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 3);
+            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 5);
 
             document.getElementById('sliderContent').innerHTML = sliderList.map(p => `
                 <div class="swiper-slide">
@@ -147,16 +150,27 @@
                     <div class="promo-overlay"></div>
                     <div class="promo-info">
                         <h2>${p.titulo}</h2>
-                        <a href="${p.url}" class="btn-play">VER AHORA</a>
+                        <a href="${p.url}" class="btn-play">▶ VER AHORA</a>
                     </div>
                 </div>
             `).join('');
 
             document.getElementById('bannerBox').style.display = 'block';
+            
+            // CONFIGURACIÓN DEL SLIDER PRO
             new Swiper('.main-slider', { 
                 loop: true, 
-                autoplay: { delay: 4000 },
-                pagination: { el: '.swiper-pagination', clickable: true }
+                effect: 'fade', // Efecto de desvanecimiento
+                fadeEffect: { crossFade: true },
+                autoplay: { 
+                    delay: 5000, // 5 segundos exactos
+                    disableOnInteraction: false 
+                },
+                pagination: { 
+                    el: '.swiper-pagination', 
+                    clickable: true 
+                },
+                speed: 1500 // Velocidad de la transición suave
             });
 
             // CATEGORÍAS
@@ -171,9 +185,9 @@
                     <div class="swiper swiper-container" id="row-${idx}">
                         <div class="swiper-wrapper">
                             ${filtradas.map(p => `
-                                <div class="swiper-slide" style="width:130px">
+                                <div class="swiper-slide" style="width:145px">
                                     <a href="${p.url}" class="card" data-title="${p.titulo}">
-                                        <img src="${p.img}">
+                                        <img src="${p.img}" loading="lazy">
                                         <span>${p.titulo}</span>
                                     </a>
                                 </div>
@@ -182,7 +196,7 @@
                     </div>
                 `;
                 main.appendChild(row);
-                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 10, freeMode: true });
+                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
             });
         }
 
