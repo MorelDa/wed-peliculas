@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PARTY PLAY | Cinema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root { --primary: #ff2d75; --bg: #0a0a0b; --text: #ffffff; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        #app-wrapper { width: 100vw; height: 100vh; overflow-y: auto; }
+
+        header { height: 70px; padding: 0 5%; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); position: absolute; top: 0; width: 100%; z-index: 1000; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: 'Orbitron'; font-size: 1.6rem; color: var(--primary); font-weight: 900; }
+        
+        .search-container { position: relative; margin: 90px auto 20px; padding: 0 5%; max-width: 600px; z-index: 100; }
+        .search-bar { width: 100%; padding: 15px 55px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(26, 26, 28, 0.8); backdrop-filter: blur(10px); color: white; outline: none; font-size: 1rem; }
+
+        .banner-wrapper { width: 100%; height: 80vh; margin-top: -180px; position: relative; }
+        .main-slider { height: 100%; width: 100%; }
+        .swiper-slide { overflow: hidden; position: relative; background: #000; }
+        .promo-img { width: 100%; height: 100%; position: absolute; inset: 0; transform: scale(1.2); transition: transform 1.5s cubic-bezier(0.1, 0, 0.1, 1); }
+        .promo-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .swiper-slide-active .promo-img { transform: scale(1); }
+        .promo-overlay { position: absolute; inset: 0; background: linear-gradient(70deg, #0a0a0b 25%, transparent 100%), linear-gradient(to top, #0a0a0b 5%, transparent 50%); z-index: 2; }
+        .promo-info { position: absolute; bottom: 15%; left: 8%; z-index: 3; max-width: 80%; opacity: 0; transform: translateY(30px); transition: 1s ease; }
+        .swiper-slide-active .promo-info { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+        .promo-info h2 { font-family: 'Orbitron'; font-size: clamp(1.5rem, 8vw, 3rem); margin: 0; }
+        .btn-ver { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #000; padding: 12px 30px; border-radius: 4px; font-weight: 900; text-decoration: none; margin-top: 20px; }
+
+        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; }
+        .swiper-container { padding: 0 5% !important; overflow: visible !important; }
+        .card { background: #161618; border-radius: 6px; overflow: hidden; text-decoration: none; color: white; display: block; transition: 0.4s; border: 1px solid #222; }
+        .card:hover { transform: scale(1.05); border-color: var(--primary); }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
+        .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    </style>
+</head>
+<body>
+
+    <div id="app-wrapper">
+        <header><div class="logo">PARTY PLAY</div></header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
+        </div>
+
+        <div class="banner-wrapper">
+            <div class="swiper main-slider" id="topSlider">
+                <div class="swiper-wrapper" id="sliderItems"></div>
+            </div>
+        </div>
+
+        <main id="contentRows"></main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // FUNCIÓN PARA NORMALIZAR DATOS (Arregla errores de etiquetas/sinopsis)
+        function normalize(item) {
+            return {
+                titulo: item.titulo || "Sin título",
+                img: item.img || "",
+                url: item.url || "#",
+                generos: item.etiquetas || item.tipos || ["General"],
+                resumen: item.sinopsis || item.synopsis || "Sin descripción disponible."
+            };
+        }
+
+        async function loadData() {
+            let rawData = [];
+            try {
+                // Intenta cargar el archivo local
+                const response = await fetch('datos.json');
+                if (response.ok) rawData = await response.json();
+            } catch (e) {
+                console.warn("No se pudo cargar datos.json, usando datos internos.");
+            }
+
+            // Si el archivo falla, el código usa los datos que proporcionaste aquí
+            if (rawData.length === 0) {
+                rawData = [
+                    { "tipo": "pelicula", "titulo": "Scream 7", "img": "https://media.themoviedb.org/t/p/w1280/hflipaW7mtfKZM9WFEyzUdFsgSk.jpg", "tipos": ["Terror"], "synopsis": "Sidney debe enfrentarse a los horrores de su pasado." },
+                    { "tipo": "pelicula", "titulo": "Máquina de guerra", "img": "https://media.themoviedb.org/t/p/w1280/d5YmQx9kPLQBHEboGwrAavypztB.jpg", "tipos": ["Acción"], "synopsis": "Un ingeniero lidera su unidad contra una máquina asesina." },
+                    { "tipo": "pelicula", "titulo": "Superman", "img": "https://www.themoviedb.org/t/p/w1280/fvUJb08yatV2b3NUSwuYdQKYoFd.jpg", "etiquetas": ["Aventura"], "sinopsis": "Clark Kent reconcilia su herencia kryptoniana." },
+                    { "tipo": "pelicula", "titulo": "Anaconda", "img": "https://www.themoviedb.org/t/p/w1280/hENLu86h3zljg0x8bdy8cOUxZF5.jpg", "etiquetas": ["Terror"], "sinopsis": "Una anaconda real acecha a un equipo de filmación." }
+                ];
+            }
+
+            const pelis = rawData.filter(i => i.tipo === "pelicula").map(normalize);
+
+            // Render Slider (Primeras 4)
+            document.getElementById('sliderItems').innerHTML = pelis.slice(0, 4).map(m => `
+                <div class="swiper-slide">
+                    <div class="promo-img"><img src="${m.img}"></div>
+                    <div class="promo-overlay"></div>
+                    <div class="promo-info">
+                        <h2>${m.titulo}</h2>
+                        <p style="color: #ccc; margin: 10px 0;">${m.resumen}</p>
+                        <a href="${m.url}" class="btn-ver">Ver Ahora</a>
+                    </div>
+                </div>
+            `).join('');
+
+            new Swiper('#topSlider', { loop: true, speed: 1000, autoplay: { delay: 5000 }, effect: 'fade' });
+
+            // Render Filas (Todas)
+            renderRows(pelis);
+        }
+
+        function renderRows(items) {
+            const container = document.getElementById('contentRows');
+            const cats = [...new Set(items.flatMap(m => m.generos))].sort();
+
+            cats.forEach((cat, idx) => {
+                const filtered = items.filter(m => m.generos.includes(cat));
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <h2 class="row-title">${cat}</h2>
+                    <div class="swiper swiper-container" id="row-${idx}">
+                        <div class="swiper-wrapper">
+                            ${filtered.map(p => `
+                                <div class="swiper-slide" style="width: 160px;">
+                                    <a href="${p.url}" class="card" data-title="${p.titulo}">
+                                        <img src="${p.img}" loading="lazy">
+                                        <span>${p.titulo}</span>
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
+            });
+        }
+
+        function filterAll() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(c => {
+                const match = c.dataset.title.toLowerCase().includes(q);
+                c.closest('.swiper-slide').style.display = match ? "block" : "none";
+            });
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>
