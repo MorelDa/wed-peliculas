@@ -3,27 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Pro</title>
+    <title>PARTY PLAY | Oficial</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root { --primary: #ff2d75; --bg: #0a0a0b; --text: #ffffff; }
+        
+        /* BLOQUEO DE DESLIZAMIENTO LATERAL */
+        html, body { 
+            margin: 0; 
+            padding: 0;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden; /* Evita que la página se mueva a los lados */
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; }
 
         /* HEADER ROSA */
         header { 
             background: var(--primary); 
-            padding: 20px 5%; 
+            padding: 15px 5%; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            position: relative;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             z-index: 100;
+            position: relative;
         }
-        .logo-img { height: 55px; width: auto; object-fit: contain; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); }
+        .logo-img { height: 50px; width: auto; object-fit: contain; }
 
         .search-container { width: 100%; max-width: 500px; }
         .search-bar { 
@@ -34,17 +47,16 @@
         /* SLIDER PROFESIONAL */
         .banner-wrapper { width: 100%; height: 70vh; position: relative; overflow: hidden; display: none; }
         .main-slider { height: 100%; width: 100%; }
-        
         .swiper-slide { position: relative; background: #000; overflow: hidden; }
         
-        /* Efecto de Zoom Lento (Ken Burns) */
         .promo-img { width: 100%; height: 100%; position: absolute; inset: 0; }
         .promo-img img { 
-            width: 100%; height: 100%; object-fit: cover; opacity: 0;
-            transition: opacity 1s ease-in-out;
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            object-position: top center; /* MUESTRA DE ARRIBA Y RECORTE ABAJO */
+            opacity: 0;
         }
         
-        /* Animación cuando la slide está activa */
         .swiper-slide-active .promo-img img { 
             opacity: 0.6;
             animation: kenburns 6s ease-out forwards; 
@@ -52,55 +64,47 @@
 
         @keyframes kenburns {
             0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
         }
 
         .promo-overlay { 
             position: absolute; inset: 0; 
-            background: linear-gradient(to top, var(--bg) 10%, transparent 60%, rgba(0,0,0,0.4) 100%); 
+            background: linear-gradient(to top, var(--bg) 5%, transparent 50%, rgba(0,0,0,0.3) 100%); 
             z-index: 2; 
         }
 
-        /* Animación de Textos */
         .promo-info { 
-            position: absolute; bottom: 50px; left: 8%; right: 8%; z-index: 3; 
-            opacity: 0; transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            position: absolute; bottom: 60px; left: 8%; right: 8%; z-index: 3; 
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.8s ease;
         }
-        .swiper-slide-active .promo-info { 
-            opacity: 1; transform: translateY(0); 
-            transition-delay: 0.5s;
-        }
+        .swiper-slide-active .promo-info { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
 
         .promo-info h2 { 
-            font-family: 'Orbitron'; font-size: 2.2rem; margin: 0 0 20px 0; 
-            text-shadow: 0 4px 15px rgba(0,0,0,1);
-            line-height: 1.1;
+            font-family: 'Orbitron'; font-size: 2rem; margin: 0 0 15px 0; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .btn-play { 
-            background: var(--primary); color: white; padding: 14px 35px; border-radius: 50px; 
+            background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; 
             font-weight: 900; text-decoration: none; display: inline-block; 
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.4);
-            transition: 0.3s;
+            font-size: 0.8rem; text-transform: uppercase;
         }
-        .btn-play:hover { transform: scale(1.05); background: #ff5294; }
-
-        /* Paginación Pro */
-        .swiper-pagination-bullet { width: 12px; height: 12px; background: #fff !important; opacity: 0.3; }
-        .swiper-pagination-bullet-active { width: 30px; border-radius: 6px; background: var(--primary) !important; opacity: 1; }
 
         /* CATEGORÍAS */
-        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-        .row-title::before { content: ''; width: 4px; height: 20px; background: var(--primary); border-radius: 2px; }
-        .swiper-container { padding: 0 5% !important; overflow: visible !important; }
-        .card { background: #1a1a1c; border-radius: 12px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card:hover { transform: scale(1.08); border-color: var(--primary); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 35px 0 15px 5%; color: var(--primary); text-transform: uppercase; }
+        
+        /* Aseguramos que el contenedor de Swiper no empuje el ancho de la página */
+        .swiper-container { 
+            padding: 0 5% !important; 
+            width: 100%;
+            overflow: visible !important; 
+        }
+        
+        .card { background: #1a1a1c; border-radius: 10px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #222; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
-        .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
+        .card span { padding: 8px; font-size: 0.75rem; text-align: center; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        #loading { text-align: center; padding: 150px 0; font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem; letter-spacing: 4px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        #loading { text-align: center; padding: 100px 0; font-family: 'Orbitron'; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -108,7 +112,7 @@
     <header>
         <img src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" alt="Logo" class="logo-img">
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="¿Qué quieres ver hoy?" onkeyup="filterAll()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
         </div>
     </header>
 
@@ -118,10 +122,8 @@
         <div class="banner-wrapper" id="bannerBox">
             <div class="swiper main-slider">
                 <div class="swiper-wrapper" id="sliderContent"></div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
-
         <main id="sections"></main>
     </div>
 
@@ -132,9 +134,7 @@
                 const r = await fetch('datos.json?v=' + Math.random());
                 const data = await r.json();
                 renderWeb(data);
-            } catch (e) {
-                document.getElementById('loading').innerHTML = "ERROR DE CONEXIÓN";
-            }
+            } catch (e) { document.getElementById('loading').innerText = "ERROR"; }
         }
 
         function renderWeb(pelis) {
@@ -142,7 +142,7 @@
             document.getElementById('app').style.display = 'block';
 
             const destacados = pelis.filter(p => p.enSlider === true);
-            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 5);
+            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 3);
 
             document.getElementById('sliderContent').innerHTML = sliderList.map(p => `
                 <div class="swiper-slide">
@@ -150,30 +150,20 @@
                     <div class="promo-overlay"></div>
                     <div class="promo-info">
                         <h2>${p.titulo}</h2>
-                        <a href="${p.url}" class="btn-play">▶ VER AHORA</a>
+                        <a href="${p.url}" class="btn-play">VER AHORA</a>
                     </div>
                 </div>
             `).join('');
 
             document.getElementById('bannerBox').style.display = 'block';
             
-            // CONFIGURACIÓN DEL SLIDER PRO
             new Swiper('.main-slider', { 
                 loop: true, 
-                effect: 'fade', // Efecto de desvanecimiento
-                fadeEffect: { crossFade: true },
-                autoplay: { 
-                    delay: 5000, // 5 segundos exactos
-                    disableOnInteraction: false 
-                },
-                pagination: { 
-                    el: '.swiper-pagination', 
-                    clickable: true 
-                },
-                speed: 1500 // Velocidad de la transición suave
+                effect: 'fade',
+                autoplay: { delay: 5000 },
+                speed: 1500
             });
 
-            // CATEGORÍAS
             const main = document.getElementById('sections');
             const categorias = [...new Set(pelis.flatMap(p => p.etiquetas || p.tipos || ["General"]))].sort();
 
@@ -185,9 +175,9 @@
                     <div class="swiper swiper-container" id="row-${idx}">
                         <div class="swiper-wrapper">
                             ${filtradas.map(p => `
-                                <div class="swiper-slide" style="width:145px">
+                                <div class="swiper-slide" style="width:140px">
                                     <a href="${p.url}" class="card" data-title="${p.titulo}">
-                                        <img src="${p.img}" loading="lazy">
+                                        <img src="${p.img}">
                                         <span>${p.titulo}</span>
                                     </a>
                                 </div>
@@ -196,7 +186,7 @@
                     </div>
                 `;
                 main.appendChild(row);
-                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
+                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 12, freeMode: true });
             });
         }
 
@@ -207,7 +197,6 @@
                 c.closest('.swiper-slide').style.display = match ? "block" : "none";
             });
         }
-
         window.onload = init;
     </script>
 </body>
