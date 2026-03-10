@@ -17,53 +17,47 @@
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* HEADER REDISEÑADO */
+        /* HEADER UNIFICADO (MÓVIL Y PC) */
         header { 
             position: absolute; top: 0; left: 0; width: 100%;
             padding: 20px 5%; display: flex; align-items: center;
-            z-index: 1000; transition: 0.3s;
+            z-index: 1000;
         }
         
-        /* LOGO PEQUEÑO CON FONDO ROSA */
+        /* LOGO EN LA ESQUINA */
         .logo-box {
             background: var(--primary);
             padding: 8px 15px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 15px rgba(255, 45, 117, 0.4);
+            flex-shrink: 0;
         }
         .logo-img { height: 35px; width: auto; object-fit: contain; }
 
-        /* BUSCADOR TRANSPARENTE ENCIMA DEL SLIDER */
+        /* BUSCADOR ENCIMA DEL SLIDER */
         .search-container { 
-            margin-left: 30px;
+            margin-left: 20px;
             flex-grow: 1;
-            max-width: 600px;
+            max-width: 500px;
         }
         .search-bar { 
             width: 100%; 
-            padding: 12px 25px; 
+            padding: 12px 20px; 
             border-radius: 50px; 
             border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: rgba(255, 255, 255, 0.1); /* Transparente */
-            backdrop-filter: blur(10px); /* Efecto cristal */
+            background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para contraste */
+            backdrop-filter: blur(10px);
             color: white; 
             outline: none; 
             font-size: 0.9rem;
-            transition: 0.3s;
-        }
-        .search-bar:focus {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--primary);
         }
         .search-bar::placeholder { color: rgba(255,255,255,0.7); }
 
-        /* SLIDER (AJUSTE PC Y MÓVIL) */
+        /* SLIDER (ALTURA AJUSTADA) */
         .banner-wrapper { 
             width: 100%; 
-            height: 90vh; /* Más grande en PC */
+            height: 80vh; /* Altura alta para PC y móvil */
             position: relative; 
             overflow: hidden; 
             display: none; 
@@ -75,7 +69,7 @@
         .promo-img img { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            object-position: top center; 
+            object-position: top center; /* MUESTRA DESDE ARRIBA */
             opacity: 0;
         }
         
@@ -86,10 +80,9 @@
 
         @keyframes kenburns {
             0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
         }
 
-        /* Degradado más oscuro para el buscador blanco/transparente */
         .promo-overlay { 
             position: absolute; inset: 0; 
             background: linear-gradient(to top, var(--bg) 5%, transparent 40%, rgba(0,0,0,0.6) 100%); 
@@ -97,7 +90,7 @@
         }
 
         .promo-info { 
-            position: absolute; bottom: 10%; left: 8%; z-index: 3; 
+            position: absolute; bottom: 10%; left: 5%; right: 5%; z-index: 3; 
             opacity: 0; transform: translateY(30px);
         }
         .swiper-slide-active .promo-info { 
@@ -107,38 +100,61 @@
 
         .promo-info h2 { 
             font-family: 'Orbitron'; 
-            font-size: clamp(2rem, 5vw, 4rem); /* Títulos gigantes en PC */
-            margin: 0 0 20px 0; 
+            font-size: clamp(1.8rem, 4vw, 3.5rem); 
+            margin: 0 0 15px 0; 
             text-shadow: 0 4px 20px rgba(0,0,0,0.9);
         }
         .btn-play { 
-            background: var(--primary); color: white; padding: 15px 40px; border-radius: 50px; 
+            background: var(--primary); color: white; padding: 12px 35px; border-radius: 50px; 
             font-weight: 900; text-decoration: none; display: inline-block; 
-            font-size: 1rem; text-transform: uppercase; transition: 0.3s;
+            font-size: 0.9rem; text-transform: uppercase;
         }
-        .btn-play:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
 
-        /* CATEGORÍAS - IMÁGENES MÁS GRANDES EN PC */
-        .row-title { font-family: 'Orbitron'; font-size: 1.3rem; margin: 50px 0 20px 5%; color: var(--primary); text-transform: uppercase; }
-        
+        /* CATEGORÍAS Y MARCA DE AGUA */
+        .row-title { font-family: 'Orbitron'; font-size: 1.2rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; }
         .swiper-container { padding: 0 5% !important; overflow: visible !important; }
         
         .card { 
-            background: #1a1a1c; border-radius: 12px; overflow: hidden; 
+            background: #1a1a1c; border-radius: 10px; overflow: hidden; 
             text-decoration: none; color: white; display: block; border: 1px solid #222; 
-            transition: 0.4s;
+            transition: 0.3s;
+            position: relative; /* Para la marca de agua */
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
-        .card span { padding: 12px; font-size: 0.9rem; text-align: center; display: block; font-weight: 600; }
+        .card:hover { transform: scale(1.05); border-color: var(--primary); }
+        
+        /* Contenedor de la imagen para la marca de agua */
+        .card-img-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            overflow: hidden;
+        }
+        .card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* RESPONSIVE MÓVIL */
+        /* MARCA DE AGUA (LOGO PEQUEÑITO) */
+        .watermark {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 25px; /* Tamaño pequeñito */
+            height: auto;
+            opacity: 0.6; /* Transparente */
+            z-index: 10;
+            pointer-events: none; /* No interfiere con el clic */
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+        }
+
+        .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* AJUSTES MÓVIL */
         @media (max-width: 768px) {
-            header { flex-direction: column; padding: 15px; gap: 10px; position: relative; background: #000; }
-            .search-container { margin-left: 0; width: 100%; }
-            .banner-wrapper { height: 60vh; }
-            .logo-img { height: 30px; }
-            .search-bar { background: #1a1a1c; }
+            header { padding: 15px 5%; }
+            .logo-box { padding: 6px 12px; }
+            .logo-img { height: 25px; }
+            .search-container { margin-left: 10px; }
+            .search-bar { padding: 10px 15px; font-size: 0.8rem; }
+            .banner-wrapper { height: 70vh; }
+            .watermark { width: 20px; } /* Más pequeño en móvil */
         }
 
         #loading { text-align: center; padding: 150px 0; font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem; }
@@ -146,16 +162,16 @@
 </head>
 <body>
 
-    <header id="mainHeader">
+    <header>
         <div class="logo-box">
             <img src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" alt="Logo" class="logo-img">
         </div>
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="Busca tus películas o series favoritas..." onkeyup="filterAll()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
         </div>
     </header>
 
-    <div id="loading">CARGANDO PARTY PLAY...</div>
+    <div id="loading">CARGANDO...</div>
 
     <div id="app" style="display:none">
         <div class="banner-wrapper" id="bannerBox">
@@ -173,7 +189,7 @@
                 const r = await fetch('datos.json?v=' + Math.random());
                 const data = await r.json();
                 renderWeb(data);
-            } catch (e) { document.getElementById('loading').innerText = "ERROR AL CONECTAR"; }
+            } catch (e) { document.getElementById('loading').innerText = "ERROR"; }
         }
 
         function renderWeb(pelis) {
@@ -189,7 +205,7 @@
                     <div class="promo-overlay"></div>
                     <div class="promo-info">
                         <h2>${p.titulo}</h2>
-                        <a href="${p.url}" class="btn-play">REPRODUCIR AHORA</a>
+                        <a href="${p.url}" class="btn-play">VER AHORA</a>
                     </div>
                 </div>
             `).join('');
@@ -214,8 +230,12 @@
                     <div class="swiper swiper-container" id="row-${idx}">
                         <div class="swiper-wrapper">
                             ${filtradas.map(p => `
-                                <div class="swiper-slide" style="width:220px"> <a href="${p.url}" class="card" data-title="${p.titulo}">
-                                        <img src="${p.img}">
+                                <div class="swiper-slide" style="width:160px">
+                                    <a href="${p.url}" class="card" data-title="${p.titulo}">
+                                        <div class="card-img-container">
+                                            <img src="${p.img}" loading="lazy">
+                                            <img src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" class="watermark">
+                                        </div>
                                         <span>${p.titulo}</span>
                                     </a>
                                 </div>
@@ -224,14 +244,7 @@
                     </div>
                 `;
                 main.appendChild(row);
-                
-                // Adaptar tamaño de tarjetas en móvil
-                const cardWidth = window.innerWidth < 768 ? 140 : 220;
-                document.querySelectorAll('.swiper-slide').forEach(s => {
-                    if(!s.closest('.main-slider')) s.style.width = cardWidth + 'px';
-                });
-
-                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
+                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
             });
         }
 
