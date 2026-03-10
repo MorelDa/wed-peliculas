@@ -1,0 +1,292 @@
+[
+  {
+    "tipo": "pelicula",
+    "titulo": "Scream 7",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/hflipaW7mtfKZM9WFEyzUdFsgSk.jpg",
+    "url": "https://morelda.github.io/Scream-7/",
+    "year": "2026",
+    "etiquetas": [
+      "Terror",
+      "Misterio",
+      "Crimen"
+    ],
+    "sinopsis": "Cuando un nuevo asesino Ghostface aparece en el tranquilo pueblo donde Sidney Prescott ha construido una nueva vida, sus peores miedos se hacen realidad cuando su hija se convierte en el siguiente objetivo. Decidida a proteger a su familia, Sidney debe enfrentarse a los horrores de su pasado para poner fin a la masacre de una vez por todas.",
+    "enSlider": true
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Máquina de guerra",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/d5YmQx9kPLQBHEboGwrAavypztB.jpg",
+    "url": "https://morelda.github.io/M-quina-de-guerra/",
+    "year": "2026",
+    "etiquetas": [
+      "Acción",
+      "Ciencia ficción",
+      "Suspense"
+    ],
+    "sinopsis": "En una última misión agotadora durante el entrenamiento para ser ranger, un ingeniero de combate debe liderar a su unidad contra una gigantesca máquina asesina de otro mundo.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "El engaño",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/uuIP7lRgzSjaZ4CT33WHfctLARs.jpg",
+    "url": "https://morelda.github.io/El-enga-o/",
+    "year": "2026",
+    "etiquetas": [
+      "Acción",
+      "Suspense"
+    ],
+    "sinopsis": "Una pirata retirada que vive tranquilamente en una remota isla debe enfrentarse a su pasado y usar sus habilidades letales para salvar a su familia de un implacable asedio cuando su antiguo capitán aparece para vengarse de ella.",
+    "enSlider": true
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Reinas de la Noche",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/bdK47zNkKVa253wph64WSLo9Cd9.jpg",
+    "url": "https://morelda.github.io/Reinas-de-la-Noche/",
+    "year": "2025",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Victoria hereda un bar de mala fama. Para saldar las deudas de su difunto esposo, deberá convertir el escándalo en un imperio… o perderlo todo.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Mirreyes contra Godínez: Las Vegas",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/cpSQTOkjicwmD9ekWnIjkgyghu.jpg",
+    "url": "https://morelda.github.io/Mirreyes-contra-God-nez-Las-Vegas-2025-/",
+    "year": "2025",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Genaro y Mich viajan a Las Vegas con sus colegas para salvar la zapatería con un contrato crucial. Entre fiestas y situaciones locas, deben mantener un equilibrio entre el trabajo, la amistad y el amor para lograr su objetivo.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Los Croods: Una nueva era",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/5uMWKEmegf5aTJnp1u98JF4QerP.jpg",
+    "url": "https://morelda.github.io/Los-Croods-2/",
+    "year": "2020",
+    "etiquetas": [
+      "Animación",
+      "Familia",
+      "Aventura",
+      "Fantasía",
+      "Comedia"
+    ],
+    "sinopsis": "Después de salir de su cueva, los Croods se encuentran con su mayor amenaza desde que se fueron: otra familia llamada Betterman, quienes afirman y demuestran ser mejores y evolucionados. Grug empieza a sospechar de los padres de Betterman, Phil y Hope, ya que planean en secreto separar a su hija Eep con su amado novio Guy para asegurarse de que su hija Dawn tenga un compañero amoroso e inteligente que la proteja.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Los Croods",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/3X3qtBTgKt5mCB30RJwbIjgjzdw.jpg",
+    "url": "https://morelda.github.io/Los-Croods/",
+    "year": "2013",
+    "etiquetas": [
+      "Animación",
+      "Aventura",
+      "Familia",
+      "Comedia"
+    ],
+    "sinopsis": "La película está ambientada en la prehistoria, donde Crug lidera a su familia más allá de la comodidad de su hogar después de que este sea destruido por un gran terremoto. Mientras intentan viajar por el desconocido y aterrador mundo, se encuentran con un nómada que cautiva a su clan, en especial a su hermana mayor, con su mente moderna.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Que Padre…es Mi Familia?",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/nxSnWIyBvDkJkkvc0pzEtK9Pz5p.jpg",
+    "url": "https://morelda.github.io/Reinas-de-la-Noche/",
+    "year": "2022",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Fello y Maritza se han distanciando. Cuando ganan un fin de semana en un lujoso resort, y la oportunidad de competir por el dinero que solucionaría sus problemas, toda la familia debe unirse. Fello y Maritza aprenderán que todavía vale la pena luchar..",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Los Colorado",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/4HV6Vd3QL9C29SZF4KBJ499bUet.jpg",
+    "url": "https://morelda.github.io/los-colos/",
+    "year": "2026",
+    "etiquetas": [
+      "Animación",
+      "Comedia"
+    ],
+    "sinopsis": "El Chapulín Colorado vuelve y ahora tiene familia. Junto a su esposa, sus hijos y la abuela, deberá salvar Ciudad Caótica mientras enfrenta el caos en casa. De cavernícolas a seres intergalácticos, nadie escapará del Chipote Chillón.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Harina",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/aqW5UWQ2M13lQWVrGNrUzs3hn2x.jpg",
+    "url": "https://morelda.github.io/harina/",
+    "year": "2022",
+    "etiquetas": [
+      "Comedia",
+      "Action & Adventure",
+      "Crimen"
+    ],
+    "sinopsis": "El Teniente y Ramírez se enfrentan con un \"serial killer\", cuyo objetivo es terminar con los \"influencers\". Buscarán atrapar al criminal batallando al mismo tiempo con el sistema judicial mexicano.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Superman",
+    "img": "https://www.themoviedb.org/t/p/w500/fvUJb08yatV2b3NUSwuYdQKYoFd.jpg",
+    "url": "https://morelda.github.io/su-per-m/",
+    "year": "2025",
+    "etiquetas": [
+      "Acción",
+      "Aventura",
+      "Ciencia ficción"
+    ],
+    "sinopsis": "Mientras el mundo pierde la fe en la bondad, Clark Kent, un periodista en Metrópolis, se embarca en un viaje para reconciliar su herencia kryptoniana con su educación humana como Superman.",
+    "enSlider": true
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "El paseo 8",
+    "img": "https://www.themoviedb.org/t/p/w500/oP4BuJ4toBC5KLczNy9c38cMgbr.jpg",
+    "url": "https://morelda.github.io/el-paseo/",
+    "year": "2025",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Mientras el mundo pierde la fe en la bondad, Clark Kent, un periodista en Metrópolis, se embarca en un viaje para reconciliar su herencia kryptoniana con su educación humana como Superman.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Scary Movie 5",
+    "img": "https://www.themoviedb.org/t/p/w500/mjsX6YYZEepnuJ6F04MAGGOSdbJ.jpg",
+    "url": "https://morelda.github.io/SCARY/",
+    "year": "2013",
+    "etiquetas": [
+      "Comedia"
+    ],
+    "sinopsis": "Hogar con su familia recién formada, los padres felices Dan y Jody son frecuentados por actividades siniestras, paranormales. Decididos a expulsar a la fuerza insidiosa, instalan cámaras de seguridad y descubren que su familia está siendo acosada por un demonio muerto malvado.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Anaconda",
+    "img": "https://www.themoviedb.org/t/p/w500/hENLu86h3zljg0x8bdy8cOUxZF5.jpg",
+    "url": "https://morelda.github.io/anaconda/",
+    "year": "2025",
+    "etiquetas": [
+      "Acción",
+      "Aventura",
+      "Comedia",
+      "Terror"
+    ],
+    "sinopsis": "Doug y Griff, amigos de toda la vida, atraviesan una crisis de mediana edad y deciden realizar el remake de su película favorita de su juventud: Anaconda (1997). Viajan a la selva amazónica para filmar su versión, pero pronto descubren que una anaconda real los acecha, convirtiendo su proyecto cinematográfico en una lucha por sobrevivir. La película combina comedia, acción y terror en una experiencia cinematográfica única.",
+    "enSlider": true
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Amigos Intocables",
+    "img": "https://www.themoviedb.org/t/p/w500/fvX8t8VhUxz1YkYKCJTxSkDiZDY.jpg",
+    "url": "https://morelda.github.io/intocable/",
+    "year": "2011",
+    "etiquetas": [
+      "Comedia",
+      "Drama"
+    ],
+    "sinopsis": "Un hombre tetraplégico y millonario contrata como cuidador a domicilio a Driss, un inmigrante de un barrio marginal recién salido de la cárcel. Aunque no parece la persona más indicada, congenian hasta forjar una amistad tan sólida como inesperada.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Ejecutor",
+    "img": "https://www.themoviedb.org/t/p/w500/bwf66lMEAQyAaDxwjiy0xWDB0y2.jpg",
+    "url": "https://morelda.github.io/ejecutory/",
+    "year": "1986",
+    "etiquetas": [
+      "Acción"
+    ],
+    "sinopsis": "Mark Kaminsky es expulsado del FBI por maltratar a un sospechoso. Acaba ocupando el puesto de sheriff de una pequeña localidad de Carolina del Norte. El jefe del FBI Harry Shannon, cuyo hijo ha sido asesinado por un gángster llamado Patrovina, convence a Kaminsky para que se le una en una venganza personal con la promesa de ser readmitido en el FBI si Patrovina desaparece de la circulación. Para lograrlo Kaminsky debe adoptar una nueva personalidad e incorporarse a la banda de Patrovina.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "No nos dejes caer esta noche",
+    "img": "https://www.themoviedb.org/t/p/w500/loCToXfo1tB58ZtVzsQyiAZclTE.jpg",
+    "url": "https://morelda.github.io/No-nos-dejes-caer-esta-noche/",
+    "year": "2025",
+    "etiquetas": [
+      "Drama"
+    ],
+    "sinopsis": "El tumultuoso mundo de Bobo, una niña de 8 años cuya infancia transcurre en la granja familiar de Rodesia, ahora Zimbabue, mientras la guerra de los arbustos hace estragos. Con este violento telón de fondo, y a través de sus ojos, somos testigos del desesperado apego de la familia a la tierra africana y de las profundas cicatrices de una guerra que transforma la tierra y el alma.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Votos de amor",
+    "img": "https://www.themoviedb.org/t/p/w500/kbTtU8LXhH8MLB7EF7hBZy3WUYC.jpg",
+    "url": "https://morelda.github.io/Todos-los-d-as-de-mi-vida/",
+    "year": "2012",
+    "etiquetas": [
+      "Drama",
+      "Romance"
+    ],
+    "sinopsis": "Un accidente de coche pone a Paige en coma, y cuando se despierta con una severa pérdida de memoria, su marido Leo trabaja para ganar su corazón de nuevo.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Me casé con un boludo",
+    "img": "https://www.themoviedb.org/t/p/w500/rWo38m3XwcbOeArt2UOixPtkoB9.jpg",
+    "url": "https://morelda.github.io/Me-cas-con-un-boludo/",
+    "year": "2016",
+    "etiquetas": [
+      "Comedia",
+      "Romance"
+    ],
+    "sinopsis": "Fabián Brando y Florencia Córmik son actores. El es el más renombrado del país y ella es una completa desconocida. Durante el rodaje de un film inician un fogoso romance que, casi sin noviazgo mediante, termina en casamiento. Durante la luna de miel Florencia se da cuenta de que se casó con un idiota irrecuperable. Cuando Fabián se entera lo que ella piensa de él, idea un plan que sólo podrá llevar a cabo con la ayuda del guionista de sus películas más exitosas.",
+    "enSlider": false
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "El juego del calamar",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/g72YfmqUU0AlbDXRiYmDZWs28f7.jpg",
+    "url": "https://morelda.github.io/caamar1/",
+    "year": "2021",
+    "etiquetas": [
+      "Drama"
+    ],
+    "sinopsis": "Cientos de personas con problemas de dinero aceptan una invitación rarísima para competir en juegos infantiles. Dentro los esperan un tentador premio y desafíos letales.",
+    "enSlider": true
+  },
+  {
+    "tipo": "serie",
+    "titulo": "ONE PIECE",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/gCZ18cl7Pc4tgiwMPWHTgjABrhy.jpg",
+    "url": "https://morelda.github.io/ONE-PIECE/",
+    "year": "2023",
+    "etiquetas": [
+      "Action & Adventure",
+      "Sci-Fi & Fantasy"
+    ],
+    "sinopsis": "El joven pirata Monkey D. Luffy y su variopinta tripulación emprenden un viaje épico en busca de un tesoro.",
+    "enSlider": true
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Los Cuatro Fantásticos: Primeros pasos",
+    "img": "https://media.themoviedb.org/t/p/w300_and_h450_face/ckfiXWGEMWrUP53cc6QyHijLlhl.jpg",
+    "url": "https://morelda.github.io/-Los-4-Fant-sticos/",
+    "year": "2025",
+    "etiquetas": [
+      "Ciencia ficción",
+      "Aventura",
+      "Acción"
+    ],
+    "sinopsis": "Con un mundo retrofuturista inspirado en los años 60 como telón de fondo, la Primera Familia de Marvel deberá hacer frente a su mayor desafío hasta la fecha. Obligados a buscar el equilibrio entre su papel de héroes y sus fuertes vínculos familiares, tendrán que defender la Tierra de un hambriento dios espacial llamado Galactus y su intrigante heraldo, Estela Plateada.",
+    "enSlider": true
+  }
+]
