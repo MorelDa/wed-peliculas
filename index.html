@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Oficial</title>
+    <title>PARTY PLAY | Oficial Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -24,7 +24,7 @@
             z-index: 1000;
         }
         
-        /* LOGO EN LA ESQUINA */
+        /* LOGO EN LA CABECERA (ESQUINA IZQUIERDA) */
         .logo-box {
             background: var(--primary);
             padding: 8px 15px;
@@ -131,17 +131,18 @@
         }
         .card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* MARCA DE AGUA (LOGO PEQUEÑITO) */
+        /* MARCA DE AGUA (LOGO PEQUEÑITO EN ESQUINA SUPERIOR DERECHA) */
         .watermark {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 25px; /* Tamaño pequeñito */
+            top: 5px; /* Posicionado arriba */
+            right: 5px; /* Posicionado a la derecha */
+            width: 30px; /* Tamaño pequeñito pero visible */
             height: auto;
-            opacity: 0.6; /* Transparente */
+            opacity: 0.8; /* Menos transparente para que se vea completo */
             z-index: 10;
             pointer-events: none; /* No interfiere con el clic */
-            filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 0 3px rgba(0,0,0,0.7)); /* Sombra para resaltar */
+            object-fit: contain; /* Asegura que el logo se vea completo */
         }
 
         .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -154,7 +155,7 @@
             .search-container { margin-left: 10px; }
             .search-bar { padding: 10px 15px; font-size: 0.8rem; }
             .banner-wrapper { height: 70vh; }
-            .watermark { width: 20px; } /* Más pequeño en móvil */
+            .watermark { width: 25px; } /* Un poco más pequeño en móvil */
         }
 
         #loading { text-align: center; padding: 150px 0; font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem; }
