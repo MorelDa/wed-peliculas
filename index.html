@@ -2,248 +2,230 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Radio Party Valencia | Full Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        :root { --primary: #ff2d75; --bg: #0a0a0b; --text: #ffffff; }
+        :root { --pink: #ff2d55; --bg: #fff5f7; --text: #1a1a1a; --card-bg: white; }
+        body.dark-mode { --bg: #0f0f0f; --text: #ffffff; --card-bg: #1e1e1e; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
         
-        html, body { 
-            margin: 0; padding: 0; width: 100%; max-width: 100vw;
-            overflow-x: hidden; background: var(--bg); color: var(--text); 
-            font-family: 'Poppins', sans-serif;
-        }
+        .nexa-heavy { line-height: 0.8; letter-spacing: -2px; text-transform: uppercase; font-weight: 900; }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        /* HEADER FLOTANTE */
-        header { 
-            position: absolute; top: 0; left: 0; width: 100%;
-            padding: 20px 5%; display: flex; align-items: center;
-            z-index: 1000;
-        }
-        
-        /* LOGO CON FONDO ROSA */
-        .logo-box {
-            background: var(--primary);
-            padding: 8px 15px;
-            border-radius: 8px;
+        /* BOTÓN MODO OSCURO */
+        .dark-mode-toggle {
+            position: fixed; top: 20px; right: 20px; z-index: 2000;
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--pink); color: white; border: none;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 45, 117, 0.4);
-            flex-shrink: 0;
-        }
-        .logo-img { height: 35px; width: auto; object-fit: contain; }
-
-        /* BUSCADOR SOBRE EL SLIDER */
-        .search-container { 
-            margin-left: 20px;
-            flex-grow: 1;
-            max-width: 500px;
-        }
-        .search-bar { 
-            width: 100%; 
-            padding: 12px 20px; 
-            border-radius: 50px; 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: rgba(0, 0, 0, 0.5); 
-            backdrop-filter: blur(10px);
-            color: white; 
-            outline: none; 
-            font-size: 0.9rem;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(255, 45, 85, 0.4);
         }
 
-        /* SLIDER PROFESIONAL CON AJUSTES DE ALTURA Y DIFUMINADO */
-        .banner-wrapper { 
-            width: 100%; 
-            height: 85vh; /* Altura por defecto para móvil */
-            position: relative; 
-            overflow: hidden; 
-            display: none; 
+        /* HERO DINÁMICO */
+        .top-hero {
+            width: 100%; height: 60vh; position: relative; overflow: hidden;
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
-        
-        /* Aumento de altura para PC para que llegue hasta "Acción" */
-        @media (min-width: 769px) {
-            .banner-wrapper {
-                height: 120vh; /* Altura incrementada para PC */
-            }
+        .top-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* CABECERA LADO A LADO */
+        .main-header { 
+            position: relative; z-index: 50; margin-top: -140px; padding: 0 15px;
+            display: flex !important; flex-direction: row !important; 
+            align-items: center; justify-content: center; gap: 15px;
+        }
+        .title-side { flex: 1; max-width: 55%; text-align: left; }
+        .title-side h1 { font-size: 38px; }
+
+        .heartbeat-container {
+            width: 160px !important; height: 160px !important; flex-shrink: 0;
+            border-radius: 2.5rem; border: 8px solid white;
+            box-shadow: 0 25px 50px rgba(255, 45, 85, 0.4);
+            overflow: hidden; animation: pulse 1.8s infinite ease-in-out; background: #fff;
         }
 
-        .main-slider { height: 100%; width: 100%; }
-        .swiper-slide { position: relative; background: #000; overflow: hidden; }
-        
-        .promo-img { width: 100%; height: 100%; position: absolute; inset: 0; }
-        .promo-img img { 
-            width: 100%; height: 100%; 
-            object-fit: cover; 
-            object-position: top center; 
-            opacity: 0;
-        }
-        
-        .swiper-slide-active .promo-img img { 
-            opacity: 0.7;
-            animation: kenburns 8s ease-out forwards; 
+        @media (min-width: 768px) {
+            .main-header { gap: 40px; margin-top: -180px; }
+            .title-side h1 { font-size: 100px; }
+            .heartbeat-container { width: 420px !important; height: 420px !important; border-radius: 4.5rem; border: 15px solid white; }
         }
 
-        @keyframes kenburns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+
+        /* SECCIONES Y TARJETAS */
+        .section-container { margin-top: 60px; }
+        .section-title { text-align: center; margin-bottom: 30px; font-size: 32px; }
+        .party-card { background: var(--card-bg); border-radius: 2.5rem; padding: 15px; transition: 0.4s ease; display: block; text-decoration: none; color: inherit; }
+        .party-card img { border-radius: 1.8rem; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+
+        /* SOCIAL */
+        .social-pill { padding: 12px 20px; border-radius: 100px; color: white; font-size: 14px; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; }
+        .bg-instagram { background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%); }
+        .bg-tiktok { background: #000; border: 1px solid white; }
+        .bg-whatsapp { background: #25D366; }
+
+        /* TV VIDEO */
+        .video-box {
+            max-width: 900px; margin: 0 auto; border-radius: 2.5rem; overflow: hidden; 
+            border: 6px solid white; background: #000; aspect-ratio: 16/9;
         }
 
-        /* Degradado mejorado para difuminar el recorte inferior de forma linda */
-        .promo-overlay { 
-            position: absolute; inset: 0; 
-            background: linear-gradient(to top, var(--bg) 0%, transparent 50%, rgba(0,0,0,0.6) 100%); 
-            z-index: 2; 
+        /* REPRODUCTOR FIJO */
+        .bottom-player {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #000; padding: 15px 20px; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            border-top: 4px solid var(--pink);
         }
-
-        .promo-info { 
-            position: absolute; bottom: 12%; left: 5%; right: 5%; z-index: 3; 
-            opacity: 0; transform: translateY(30px);
-        }
-        .swiper-slide-active .promo-info { 
-            opacity: 1; transform: translateY(0); 
-            transition: 1s ease 0.5s;
-        }
-
-        .promo-info h2 { 
-            font-family: 'Orbitron'; 
-            font-size: clamp(1.8rem, 4vw, 3.5rem); 
-            margin: 0 0 15px 0; 
-            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-        }
-        .btn-play { 
-            background: var(--primary); color: white; padding: 12px 35px; border-radius: 50px; 
-            font-weight: 900; text-decoration: none; display: inline-block; 
-            font-size: 0.9rem; text-transform: uppercase;
-        }
-
-        /* CATEGORÍAS (LISTAS) */
-        .row-title { font-family: 'Orbitron'; font-size: 1.2rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; }
-        .swiper-container { padding: 0 5% !important; overflow: visible !important; }
-        
-        .card { 
-            background: #1a1a1c; border-radius: 10px; overflow: hidden; 
-            text-decoration: none; color: white; display: block; border: 1px solid #222; 
-            transition: 0.3s;
-        }
-        .card:hover { transform: scale(1.05); border-color: var(--primary); }
-        
-        .card-img-container {
-            width: 100%;
-            aspect-ratio: 2/3;
-            overflow: hidden;
-        }
-        .card img { width: 100%; height: 100%; object-fit: cover; }
-
-        .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* RESPONSIVE MÓVIL */
-        @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            .logo-img { height: 25px; }
-            .search-container { margin-left: 10px; }
-            .banner-wrapper { height: 70vh; }
-        }
-
-        #loading { text-align: center; padding: 150px 0; font-family: 'Orbitron'; color: var(--primary); font-size: 1.5rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-box">
-            <img src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" alt="Logo" class="logo-img">
+    <button class="dark-mode-toggle" id="mode-toggle"><i class="fas fa-moon" id="mode-icon"></i></button>
+
+    <div class="top-hero">
+        <div class="swiper main-slider h-full w-full" id="slider-principal">
+            <div class="swiper-wrapper">
+                </div>
         </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
+    </div>
+
+    <header class="main-header">
+        <div class="title-side"><h1 class="nexa-heavy">RADIO<br><span class="text-[#ff2d55]">PARTY.</span></h1></div>
+        <div class="heartbeat-container">
+            <img id="main-meta-img" src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" class="w-full h-full object-cover">
         </div>
     </header>
 
-    <div id="loading">CARGANDO...</div>
+    <main class="pb-40" id="main-content">
+        </main>
 
-    <div id="app" style="display:none">
-        <div class="banner-wrapper" id="bannerBox">
-            <div class="swiper main-slider">
-                <div class="swiper-wrapper" id="sliderContent"></div>
+    <div class="bottom-player">
+        <div class="flex items-center gap-3">
+            <img id="player-art" src="https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png" class="w-14 h-14 rounded-xl object-cover border-2 border-white">
+            <div class="text-white overflow-hidden">
+                <p id="track-title" class="font-black text-sm uppercase truncate w-32">Cargando...</p>
+                <span class="text-pink-500 text-[10px] font-bold">EN DIRECTO</span>
             </div>
         </div>
-        <main id="sections"></main>
+        <button id="play-toggle" class="bg-pink-500 w-14 h-14 rounded-full text-white text-2xl shadow-lg">
+            <i class="fas fa-play" id="play-icon"></i>
+        </button>
     </div>
+
+    <audio id="main-audio" src="https://miestacion.turadioonline.com.ar/8286/stream" crossorigin="anonymous"></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        async function init() {
+        // MODO OSCURO
+        const modeToggle = document.getElementById('mode-toggle');
+        const modeIcon = document.getElementById('mode-icon');
+        modeToggle.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            modeIcon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
+        };
+
+        // CARGA DINÁMICA DE DATA.JSON
+        async function cargarWeb() {
             try {
-                const r = await fetch('datos.json?v=' + Math.random());
+                const r = await fetch('data.json?v=' + Date.now());
                 const data = await r.json();
-                renderWeb(data);
-            } catch (e) { document.getElementById('loading').innerText = "ERROR"; }
-        }
 
-        function renderWeb(pelis) {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
+                // 1. Slider Principal
+                const sliderW = document.querySelector('#slider-principal .swiper-wrapper');
+                if(data.slider_principal && data.slider_principal.length > 0) {
+                    sliderW.innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
+                    new Swiper('.main-slider', { loop: true, effect: 'fade', autoplay: { delay: 5000 } });
+                }
 
-            const destacados = pelis.filter(p => p.enSlider === true);
-            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 3);
+                let htmlContent = '';
 
-            document.getElementById('sliderContent').innerHTML = sliderList.map(p => `
-                <div class="swiper-slide">
-                    <div class="promo-img"><img src="${p.img}"></div>
-                    <div class="promo-overlay"></div>
-                    <div class="promo-info">
-                        <h2>${p.titulo}</h2>
-                        <a href="${p.url}" class="btn-play">VER AHORA</a>
-                    </div>
-                </div>
-            `).join('');
-
-            document.getElementById('bannerBox').style.display = 'block';
-            
-            new Swiper('.main-slider', { 
-                loop: true, 
-                effect: 'fade',
-                autoplay: { delay: 5000 },
-                speed: 1500
-            });
-
-            const main = document.getElementById('sections');
-            const categorias = [...new Set(pelis.flatMap(p => p.etiquetas || p.tipos || ["General"]))].sort();
-
-            categorias.forEach((cat, idx) => {
-                const filtradas = pelis.filter(p => (p.etiquetas || p.tipos || []).includes(cat));
-                const row = document.createElement('div');
-                row.innerHTML = `
-                    <h2 class="row-title">${cat}</h2>
-                    <div class="swiper swiper-container" id="row-${idx}">
-                        <div class="swiper-wrapper">
-                            ${filtradas.map(p => `
-                                <div class="swiper-slide" style="width:160px">
-                                    <a href="${p.url}" class="card" data-title="${p.titulo}">
-                                        <div class="card-img-container">
-                                            <img src="${p.img}" loading="lazy">
+                // 2. Secciones (Novedades, Ranking, Sobre Nosotros)
+                data.secciones.forEach(sec => {
+                    if(sec.items && sec.items.length > 0) {
+                        htmlContent += `
+                        <section class="section-container">
+                            <h2 class="section-title nexa-heavy">${sec.nombre} <span class="text-[#ff2d55]">${sec.sub}</span></h2>
+                            <div class="swiper section-slider px-8">
+                                <div class="swiper-wrapper">
+                                    ${sec.items.map(item => `
+                                        <div class="swiper-slide" style="width:240px">
+                                            <a href="${item.url}" target="_blank" class="party-card shadow-lg">
+                                                <img src="${item.img}">
+                                                <h3 class="mt-3 text-center uppercase font-bold text-sm">${item.titulo}</h3>
+                                            </a>
                                         </div>
-                                        <span>${p.titulo}</span>
-                                    </a>
+                                    `).join('')}
                                 </div>
-                            `).join('')}
-                        </div>
+                            </div>
+                        </section>`;
+                    }
+                });
+
+                // 3. Redes Sociales
+                htmlContent += `
+                <section class="section-container">
+                    <h2 class="section-title nexa-heavy">Síguenos <span class="text-[#ff2d55]">Live</span></h2>
+                    <div class="flex justify-center flex-wrap gap-4 px-5">
+                        <a href="${data.redes.instagram}" target="_blank" class="social-pill bg-instagram"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+                        <a href="${data.redes.tiktok}" target="_blank" class="social-pill bg-tiktok"><i class="fab fa-tiktok"></i> TIKTOK</a>
+                        <a href="${data.redes.whatsapp}" target="_blank" class="social-pill bg-whatsapp"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
                     </div>
-                `;
-                main.appendChild(row);
-                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
-            });
+                </section>`;
+
+                // 4. Míranos Online (YouTube)
+                if(data.youtube_url) {
+                    htmlContent += `
+                    <section class="section-container px-5">
+                        <h2 class="section-title nexa-heavy">Míranos <span class="text-[#ff2d55]">Online</span></h2>
+                        <div class="video-box">
+                            <iframe class="w-full h-full" src="${data.youtube_url}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </section>`;
+                }
+
+                // 5. Footer
+                htmlContent += `
+                <footer class="mt-20 text-center opacity-60 pb-10">
+                    <p>© 2026 <b>RADIO PARTY VALENCIA</b></p>
+                    <p class="mt-1 tracking-widest uppercase text-[10px] font-black">djkevin producciones</p>
+                </footer>`;
+
+                document.getElementById('main-content').innerHTML = htmlContent;
+                document.querySelectorAll('.section-slider').forEach(s => new Swiper(s, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true }));
+
+            } catch (e) { console.log("Error cargando el panel de control."); }
         }
 
-        function filterAll() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => {
-                const match = c.dataset.title.toLowerCase().includes(q);
-                c.closest('.swiper-slide').style.display = match ? "block" : "none";
-            });
+        // REPRODUCTOR Y METADATOS
+        const audio = document.getElementById('main-audio');
+        const playBtn = document.getElementById('play-toggle');
+        const playIcon = document.getElementById('play-icon');
+
+        playBtn.onclick = () => {
+            if (audio.paused) { audio.play(); playIcon.className = 'fas fa-pause'; }
+            else { audio.pause(); playIcon.className = 'fas fa-play'; }
+        };
+
+        async function updateMeta() {
+            try {
+                const r = await fetch('https://miestacion.turadioonline.com.ar/cp/get_info.php?p=8286&v=' + Math.random());
+                const d = await r.json();
+                document.getElementById('track-title').innerText = d.title || "RADIO PARTY";
+                document.getElementById('player-art').src = d.art || "https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png";
+                document.getElementById('main-meta-img').src = d.art || "https://i.postimg.cc/7hgdMS6K/Picsart-24-08-01-00-13-45-109.png";
+            } catch (e) {}
         }
-        window.onload = init;
+
+        window.onload = () => {
+            cargarWeb();
+            updateMeta();
+            setInterval(updateMeta, 10000);
+        };
     </script>
 </body>
 </html>
