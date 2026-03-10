@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Movilidad Total</title>
+    <title>PARTY PLAY | Buscador Primero</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
@@ -11,129 +11,103 @@
         :root {
             --primary: #ff2d75;
             --bg: #0a0a0b;
-            --card-bg: #161618;
             --text: #ffffff;
         }
 
-        /* --- SOLUCIÓN RADICAL AL DESLIZAMIENTO LATERAL --- */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+        /* RESET Y BLOQUEO DE MOVIMIENTO LATERAL */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; background-color: var(--bg); 
+            color: var(--text); font-family: 'Poppins', sans-serif;
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden; /* Prohibido el scroll horizontal en la raíz */
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            position: fixed; /* Fija la base para evitar que el elástico del móvil lo mueva */
-            left: 0; top: 0;
-        }
-
-        /* Contenedor que permite scroll vertical pero bloquea el horizontal */
         #app-wrapper {
-            width: 100vw;
-            height: 100vh;
-            overflow-y: auto;
-            overflow-x: hidden; /* Doble bloqueo */
-            position: relative;
-            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+            width: 100vw; height: 100vh; overflow-y: auto; overflow-x: hidden;
+            position: relative; -webkit-overflow-scrolling: touch;
         }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            height: 60px; padding: 0 5%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 1000;
+            height: 60px; padding: 0 5%; background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1000;
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid rgba(255,45,117,0.3);
         }
-        .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--primary); text-decoration: none; font-weight: 900; }
+        .logo { font-family: 'Orbitron'; font-size: 1.3rem; color: var(--primary); text-decoration: none; font-weight: 900; }
 
-        /* --- BUSCADOR --- */
-        .search-container {
-            text-align: center;
-            margin: 20px auto;
-            padding: 0 5%;
-            position: relative;
-            max-width: 550px;
+        /* EL BUSCADOR SIEMPRE PRIMERO */
+        .search-container { 
+            text-align: center; margin: 20px auto; padding: 0 5%; 
+            max-width: 550px; position: relative; z-index: 100;
         }
-        .search-bar {
-            width: 100%;
-            padding: 12px 20px 12px 45px;
-            border-radius: 30px;
-            border: 1px solid #333; background: #111; color: white;
-            outline: none; font-size: 1rem;
+        .search-bar { 
+            width: 100%; padding: 14px 50px; border-radius: 30px; 
+            border: 1px solid #333; background: #1a1a1c; color: white; outline: none; 
+            font-size: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
-        .search-icon { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); color: #666; }
+        .search-icon { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; }
 
-        /* --- BANNER --- */
-        .banner-wrapper {
-            width: 90%; margin: 10px auto;
-            border-radius: 12px; overflow: hidden;
-            aspect-ratio: 16 / 7; background: #000;
-        }
-        .main-slider img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- CARRUSELES --- */
-        .main-content { padding: 10px 0 60px 0; width: 100%; }
+        /* SLIDER DE PROMOCIÓN (ESTILO SOLICITADO) */
+        .banner-wrapper { width: 100%; position: relative; overflow: hidden; margin-bottom: 30px; }
+        .main-slider { height: 65vh; min-height: 400px; width: 100%; }
         
-        .row-container { 
-            margin-bottom: 30px; 
-            width: 100vw; /* Forzamos el ancho visual exacto */
-            overflow: hidden; 
-        }
+        .swiper-slide { position: relative; background: #000; }
+        .d-bg-1 { width: 100%; height: 100%; position: relative; }
         
-        .row-title {
-            font-family: 'Orbitron'; font-size: 0.95rem; color: var(--primary);
-            margin: 0 0 15px 5%; border-left: 3px solid var(--primary);
-            padding-left: 10px; text-transform: uppercase;
+        .imgs-1 { position: absolute; inset: 0; z-index: 1; }
+        .imgs-1 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+
+        .center-1 {
+            position: absolute; inset: 0; z-index: 2;
+            background: linear-gradient(to top, rgba(10,10,11,1) 10%, rgba(10,10,11,0) 80%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 40px 6%;
         }
 
-        /* Ajuste de Swiper para que no se salga */
-        .swiper-container { 
-            width: 100% !important;
-            padding-left: 5% !important; 
-            padding-right: 5% !important;
-            overflow: visible !important; /* Permite ver la siguiente tarjeta pero contenido por el wrapper */
+        .tex-bg-2 { font-family: 'Orbitron'; font-size: 2rem; font-weight: 900; margin-bottom: 5px; text-shadow: 2px 2px 10px #000; }
+        .tex-bg-4 { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tex-bg-6 { background: #ffcc00; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: 900; font-size: 0.8rem; }
+        .tex-bg-8, .tex-bg-9 { color: #ddd; font-size: 0.85rem; }
+
+        .tex-bg-11 { 
+            font-size: 0.9rem; color: #eee; max-width: 650px; margin-bottom: 25px;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.5; text-shadow: 1px 1px 5px #000;
         }
 
-        .card {
-            background: var(--card-bg); border-radius: 8px; overflow: hidden;
-            text-decoration: none; color: var(--text); display: block;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
-        .card .title { 
-            padding: 6px; font-size: 0.7rem; text-align: center; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+        .btn-ver-ahora {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--primary); color: white; text-decoration: none;
+            padding: 12px 35px; border-radius: 8px; width: fit-content;
+            font-weight: 600; box-shadow: 0 4px 15px rgba(255,45,117,0.4);
         }
 
-        /* Pantalla de carga */
-        #intro {
-            position: fixed; inset: 0; background: #000;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10000; transition: opacity 0.5s ease;
+        /* CATEGORÍAS */
+        .row-title { font-family: 'Orbitron'; font-size: 1rem; color: var(--primary); margin: 0 0 15px 5%; text-transform: uppercase; }
+        .swiper-container { padding: 0 5% !important; overflow: visible !important; margin-bottom: 35px; }
+        .card { background: #161618; border-radius: 8px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #222; }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
+        .card span { padding: 8px; font-size: 0.75rem; text-align: center; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        @media (max-width: 768px) {
+            .main-slider { height: 55vh; }
+            .tex-bg-2 { font-size: 1.4rem; }
+            .search-bar { padding: 12px 45px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="intro"><div style="font-family:'Orbitron'; color:var(--primary); font-size:1.5rem;">PARTY PLAY</div></div>
-
     <div id="app-wrapper">
         <header>
             <a href="#" class="logo">PARTY PLAY</a>
-            <span onclick="location.reload()" style="cursor:pointer">🏠</span>
+            <span onclick="location.reload()" style="cursor:pointer; font-size: 1.4rem;">🏠</span>
         </header>
 
         <div class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar..." onkeyup="filterAll()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar películas o series..." onkeyup="filterAll()">
         </div>
 
         <div class="banner-wrapper">
@@ -143,82 +117,82 @@
             </div>
         </div>
 
-        <main class="main-content" id="contentRows"></main>
+        <main id="contentRows"></main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        window.onload = () => {
-            setTimeout(() => {
-                const intro = document.getElementById('intro');
-                intro.style.opacity = '0';
-                setTimeout(() => intro.style.display = 'none', 500);
-            }, 1000);
-            loadData();
-        };
-
-        async function loadData() {
+        async function start() {
             try {
-                const res = await fetch('datos.json');
+                const res = await fetch('datos (18).json');
                 const data = await res.json();
                 
-                // Banner
-                const sliders = data.filter(i => i.tipo === 'slider');
-                document.getElementById('sliderItems').innerHTML = sliders.map(s => `
-                    <div class="swiper-slide"><img src="${s.img}"></div>
+                // Cargar Slider (4 promocionadas)
+                const promos = data.slice(0, 4);
+                document.getElementById('sliderItems').innerHTML = promos.map(m => `
+                    <div class="swiper-slide">
+                        <div class="d-bg-1">
+                            <div class="imgs-1"><img src="${m.img}"></div>
+                            <div class="center-1">
+                                <div class="tex-bg-2">${m.titulo}</div>
+                                <div class="tex-bg-4">
+                                    <div class="tex-bg-6">TOP 10</div>
+                                    <div class="tex-bg-8">${m.year || '2025'}</div>
+                                    <div class="tex-bg-9">${(m.tipos || m.etiquetas || ['Película']).join(' / ')}</div>
+                                </div>
+                                <div class="tex-bg-11">${m.sinopsis || m.synopsis || 'Disponible ahora en HD.'}</div>
+                                <a href="${m.url}" class="btn-ver-ahora" target="_self">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    Ver Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 `).join('');
-                new Swiper('#topSlider', { loop: true, autoplay: { delay: 3000 }, pagination: { el: '.swiper-pagination' } });
 
-                // Categorías
-                renderCategories(data.filter(i => i.titulo && i.tipo !== 'slider'));
+                new Swiper('#topSlider', { loop: true, autoplay: { delay: 4500 }, pagination: { el: '.swiper-pagination', clickable: true } });
+
+                // Cargar Categorías
+                renderRows(data);
             } catch (e) { console.log(e); }
         }
 
-        function renderCategories(items) {
+        function renderRows(items) {
             const container = document.getElementById('contentRows');
-            container.innerHTML = '';
-            const genres = [...new Set(items.flatMap(m => m.tipos || m.etiquetas || ["Varios"]))].sort();
+            const categories = [...new Set(items.flatMap(m => m.tipos || m.etiquetas || ["Recomendados"]))].sort();
 
-            genres.forEach((genre, idx) => {
-                const genreMovies = items.filter(m => (m.tipos || m.etiquetas || ["Varios"]).includes(genre));
-                const row = document.createElement('div');
-                row.className = 'row-container';
-                row.innerHTML = `
-                    <h2 class="row-title">${genre}</h2>
+            categories.forEach((cat, idx) => {
+                const filtered = items.filter(m => (m.tipos || m.etiquetas || []).includes(cat));
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <h2 class="row-title">${cat}</h2>
                     <div class="swiper swiper-container" id="row-${idx}">
                         <div class="swiper-wrapper">
-                            ${genreMovies.map(m => `
-                                <div class="swiper-slide">
+                            ${filtered.map(m => `
+                                <div class="swiper-slide" style="width: 145px;">
                                     <a href="${m.url}" class="card" data-title="${m.titulo}" target="_self">
                                         <img src="${m.img}" loading="lazy">
-                                        <span class="title">${m.titulo}</span>
+                                        <span>${m.titulo}</span>
                                     </a>
                                 </div>
                             `).join('')}
                         </div>
                     </div>
                 `;
-                container.appendChild(row);
-
-                new Swiper(`#row-${idx}`, {
-                    slidesPerView: 2.3,
-                    spaceBetween: 10,
-                    freeMode: true,
-                    grabCursor: true,
-                    // Evita que el toque del carrusel mueva la página entera
-                    touchEventsTarget: 'container',
-                    breakpoints: { 768: { slidesPerView: 5.5 } }
-                });
+                container.appendChild(div);
+                new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 12, freeMode: true });
             });
         }
 
         function filterAll() {
             const q = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.swiper-slide').forEach(s => {
-                const card = s.querySelector('.card');
-                if(card) s.style.display = card.dataset.title.toLowerCase().includes(q) ? "block" : "none";
+            document.querySelectorAll('.card').forEach(c => {
+                const match = c.dataset.title.toLowerCase().includes(q);
+                c.parentElement.style.display = match ? "block" : "none";
             });
         }
+
+        start();
     </script>
 </body>
 </html>
