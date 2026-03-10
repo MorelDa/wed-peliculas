@@ -3,148 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>PARTY PLAY | Cinema Ultra</title>
+    <title>PARTY PLAY | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root { --primary: #ff2d75; --bg: #0a0a0b; --text: #ffffff; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; }
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-        
+
         /* HEADER */
-        header { height: 70px; padding: 0 5%; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); position: absolute; top: 0; width: 100%; z-index: 1000; display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-family: 'Orbitron'; font-size: 1.6rem; color: var(--primary); font-weight: 900; }
+        header { height: 70px; padding: 0 5%; position: absolute; top: 0; width: 100%; z-index: 1000; display: flex; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
+        .logo { font-family: 'Orbitron'; font-size: 1.7rem; color: var(--primary); font-weight: 900; }
 
         /* BUSCADOR */
-        .search-container { position: relative; margin: 90px auto 20px; padding: 0 5%; max-width: 600px; z-index: 100; }
-        .search-bar { width: 100%; padding: 15px 55px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(26, 26, 28, 0.8); backdrop-filter: blur(10px); color: white; outline: none; font-size: 1rem; }
+        .search-container { position: relative; margin: 100px auto 20px; padding: 0 5%; max-width: 600px; z-index: 100; }
+        .search-bar { width: 100%; padding: 16px 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(30,30,35,0.8); backdrop-filter: blur(10px); color: white; outline: none; border-bottom: 2px solid var(--primary); }
 
-        /* SLIDER PREMIUM */
-        .banner-wrapper { width: 100%; height: 80vh; margin-top: -180px; position: relative; display: none; }
+        /* SLIDER DINÁMICO (Sincronizado con Admin) */
+        .banner-wrapper { width: 100%; height: 85vh; margin-top: -190px; position: relative; overflow: hidden; display: none; }
         .main-slider { height: 100%; width: 100%; }
         .swiper-slide { overflow: hidden; position: relative; background: #000; }
-        .promo-img { width: 100%; height: 100%; position: absolute; inset: 0; transform: scale(1.2); transition: transform 1.5s cubic-bezier(0.1, 0, 0.1, 1); }
-        .promo-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-        .swiper-slide-active .promo-img { transform: scale(1); }
-        .promo-overlay { position: absolute; inset: 0; background: linear-gradient(70deg, #0a0a0b 25%, transparent 100%), linear-gradient(to top, #0a0a0b 5%, transparent 50%); z-index: 2; }
-        .promo-info { position: absolute; bottom: 15%; left: 8%; z-index: 3; max-width: 80%; opacity: 0; transform: translateY(30px); transition: 1s ease; }
-        .swiper-slide-active .promo-info { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
-        .promo-info h2 { font-family: 'Orbitron'; font-size: clamp(1.5rem, 8vw, 3rem); margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .btn-ver { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #000; padding: 12px 30px; border-radius: 4px; font-weight: 900; text-decoration: none; margin-top: 20px; transition: 0.3s; }
-        .btn-ver:hover { background: var(--primary); color: white; }
+        .promo-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transition: transform 2s ease; }
+        .swiper-slide-active .promo-img img { transform: scale(1.1); }
+        .promo-overlay { position: absolute; inset: 0; background: linear-gradient(70deg, #0a0a0b 30%, transparent 100%), linear-gradient(to top, #0a0a0b 10%, transparent 50%); z-index: 2; }
+        .promo-info { position: absolute; bottom: 15%; left: 7%; z-index: 3; max-width: 80%; }
+        .promo-info h2 { font-family: 'Orbitron'; font-size: clamp(1.8rem, 7vw, 3.5rem); margin: 0; }
+        .btn-play { background: #fff; color: #000; padding: 15px 40px; border-radius: 4px; font-weight: 900; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn-play:hover { background: var(--primary); color: white; }
 
-        /* FILAS */
-        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; }
+        /* FILAS DE PELÍCULAS */
+        .row-title { font-family: 'Orbitron'; font-size: 1.1rem; margin: 40px 0 15px 5%; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
         .swiper-container { padding: 0 5% !important; overflow: visible !important; }
-        .card { background: #161618; border-radius: 6px; overflow: hidden; text-decoration: none; color: white; display: block; transition: 0.4s; border: 1px solid #222; }
-        .card:hover { transform: scale(1.05); border-color: var(--primary); }
+        .card { background: #1a1a1c; border-radius: 8px; overflow: hidden; text-decoration: none; color: white; display: block; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
         .card span { padding: 10px; font-size: 0.8rem; text-align: center; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* MENSAJE DE ESTADO */
-        #status-msg { text-align: center; padding: 50px; color: var(--primary); font-family: 'Orbitron'; }
+        #loading { text-align: center; margin-top: 200px; font-family: 'Orbitron'; color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <div id="app-wrapper">
+    <div id="loading">CARGANDO PARTY PLAY...</div>
+
+    <div id="app" style="display:none">
         <header><div class="logo">PARTY PLAY</div></header>
 
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar en el catálogo..." onkeyup="filterAll()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar por título o género..." onkeyup="filterAll()">
         </div>
 
-        <div id="status-msg">Cargando base de datos cinematográfica...</div>
-
-        <div class="banner-wrapper" id="sliderBox">
-            <div class="swiper main-slider" id="topSlider">
-                <div class="swiper-wrapper" id="sliderItems"></div>
+        <div class="banner-wrapper" id="bannerBox">
+            <div class="swiper main-slider">
+                <div class="swiper-wrapper" id="sliderContent"></div>
             </div>
         </div>
 
-        <main id="contentRows"></main>
+        <main id="sections"></main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // NORMALIZACIÓN DE DATOS PARA SOPORTAR TODOS TUS ARCHIVOS
-        function processMovie(m) {
-            return {
-                titulo: m.titulo || "Sin Título",
-                img: m.img || "",
-                url: m.url || "#",
-                generos: m.etiquetas || m.tipos || ["Estrenos"],
-                sinopsis: m.sinopsis || m.synopsis || "No hay descripción disponible para esta película."
-            };
+        async function init() {
+            try {
+                // Cache buster para GitHub
+                const r = await fetch('datos.json?v=' + Math.random());
+                const data = await r.json();
+                
+                // Normalizar datos (compatibilidad total)
+                const pelis = data.map(m => ({
+                    titulo: m.titulo || "Sin título",
+                    img: m.img || "",
+                    url: m.url || "#",
+                    generos: m.etiquetas || m.tipos || ["General"],
+                    sinopsis: m.sinopsis || m.synopsis || "Disponible ahora.",
+                    enSlider: m.enSlider || false
+                }));
+
+                renderWeb(pelis);
+            } catch (e) {
+                document.getElementById('loading').innerHTML = "ERROR AL CARGAR DATOS.JSON";
+            }
         }
 
-        async function initApp() {
-            const status = document.getElementById('status-msg');
-            const filesToTry = ['datos (28).json', 'datos.json', 'datos.json.json'];
-            let rawData = null;
+        function renderWeb(pelis) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
 
-            // Intento de carga multinombre
-            for (let fileName of filesToTry) {
-                try {
-                    const res = await fetch(fileName);
-                    if (res.ok) {
-                        rawData = await res.json();
-                        console.log("Cargado con éxito: " + fileName);
-                        break;
-                    }
-                } catch (e) {}
-            }
+            // 1. CONFIGURAR SLIDER (Filtra las que marcaste en el Panel)
+            const destacados = pelis.filter(p => p.enSlider === true);
+            // Si no marcaste ninguna en el panel, usa las 3 primeras por defecto
+            const sliderList = destacados.length > 0 ? destacados : pelis.slice(0, 3);
 
-            if (!rawData) {
-                status.innerHTML = "❌ Error: No se detectó el archivo datos.json.<br><small>Asegúrate de que el archivo esté en la misma carpeta.</small>";
-                return;
-            }
-
-            status.style.display = 'none';
-            document.getElementById('sliderBox').style.display = 'block';
-
-            const peliculas = rawData.filter(i => i.tipo === "pelicula").map(processMovie);
-
-            // 1. RENDER SLIDER (Top 4)
-            document.getElementById('sliderItems').innerHTML = peliculas.slice(0, 4).map(m => `
+            document.getElementById('sliderContent').innerHTML = sliderList.map(p => `
                 <div class="swiper-slide">
-                    <div class="promo-img"><img src="${m.img}"></div>
+                    <div class="promo-img"><img src="${p.img}"></div>
                     <div class="promo-overlay"></div>
                     <div class="promo-info">
-                        <h2>${m.titulo}</h2>
-                        <p style="color: #ccc; margin: 15px 0; max-width: 600px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${m.sinopsis}</p>
-                        <a href="${m.url}" class="btn-ver">VER AHORA</a>
+                        <h2>${p.titulo}</h2>
+                        <p>${p.sinopsis}</p>
+                        <a href="${p.url}" class="btn-play">VER AHORA</a>
                     </div>
                 </div>
             `).join('');
 
-            new Swiper('#topSlider', {
-                loop: true,
-                speed: 1000,
-                autoplay: { delay: 6000 },
-                effect: 'fade',
-                fadeEffect: { crossFade: true }
-            });
+            document.getElementById('bannerBox').style.display = 'block';
+            new Swiper('.main-slider', { loop: true, effect: 'fade', autoplay: { delay: 5000 }, speed: 1000 });
 
-            // 2. RENDER TODAS LAS PELÍCULAS POR CATEGORÍA
-            renderCategories(peliculas);
-        }
+            // 2. CONFIGURAR SECCIONES POR GÉNERO
+            const main = document.getElementById('sections');
+            const categorias = [...new Set(pelis.flatMap(p => p.generos))].sort();
 
-        function renderCategories(items) {
-            const container = document.getElementById('contentRows');
-            const categories = [...new Set(items.flatMap(m => m.generos))].sort();
-
-            categories.forEach((cat, idx) => {
-                const filtered = items.filter(m => m.generos.includes(cat));
-                const section = document.createElement('div');
-                section.innerHTML = `
+            categorias.forEach((cat, idx) => {
+                const filtradas = pelis.filter(p => p.generos.includes(cat));
+                const row = document.createElement('div');
+                row.innerHTML = `
                     <h2 class="row-title">${cat}</h2>
                     <div class="swiper swiper-container" id="row-${idx}">
                         <div class="swiper-wrapper">
-                            ${filtered.map(p => `
-                                <div class="swiper-slide" style="width: 160px;">
+                            ${filtradas.map(p => `
+                                <div class="swiper-slide" style="width:160px">
                                     <a href="${p.url}" class="card" data-title="${p.titulo}">
-                                        <img src="${p.img}" loading="lazy">
+                                        <img src="${p.img}">
                                         <span>${p.titulo}</span>
                                     </a>
                                 </div>
@@ -152,7 +132,7 @@
                         </div>
                     </div>
                 `;
-                container.appendChild(section);
+                main.appendChild(row);
                 new Swiper(`#row-${idx}`, { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
             });
         }
@@ -165,7 +145,7 @@
             });
         }
 
-        window.onload = initApp;
+        window.onload = init;
     </script>
 </body>
 </html>
